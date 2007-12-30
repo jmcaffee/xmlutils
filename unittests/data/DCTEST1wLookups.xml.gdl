@@ -1,0 +1,127 @@
+/* **************************************************************************
+ * File: data/DCTEST1wLookups.xml.gdl
+ *
+ * Guideline source generated 12/05/2007 14:57:34
+ *
+ * *************************************************************************/
+
+	
+
+
+
+
+// +++++++++++++++++++++++++++ DPM Definitions +++++++++++++++++++++++++++
+		
+	dpm	text	amortType1st		"Amort Type 1st";
+	dpm	numeric	globalParam		"Global Parameter";
+	dpm	money	loanAmount1st		"Loan Amount 1st";
+	dpm	numeric	maxPrice1st		"Max Price 1st";
+	dpm	money	MaxPrice1stDocFICO		"Max Price 1st DocFICO";
+	dpm	money	MaxPrice1stLnAmt		"Max Price 1st Ln Amt";
+	dpm	money	MaxPrice1stNOO		"Max Price 1st NOO";
+	dpm	numeric	PrepayTerm1st		"Prepay Term 1st";
+
+
+
+
+// +++++++++++++++++++++++++++ DSM Definitions +++++++++++++++++++++++++++
+		
+decision		dpm	numeric	creditScore		"Credit Score";
+
+
+
+
+// +++++++++++++++++++++++++++ PPM Definitions +++++++++++++++++++++++++++
+		
+	ppm	text	app	pDocumentType		"Document Type";
+	ppm	text	app	pOccupancy		"Occupancy";
+	ppm	text	app	pUserType		"User Type";
+
+
+
+
+/* ************************************************************************
+                  -- Lookups that need to be imported --                  
+
+lookup("AltA-MaxPrice1st BRO LK1", amortType1st, PrepayTerm1st);
+lookup("AltA-MaxPrice1st DocFICO BRO LK1", pDocumentType, creditScore);
+lookup("AltA-MaxPrice1st Ln Amt BRO LK1", loanAmount1st, globalParam);
+lookup("AltA-MaxPrice1st NOO BRO LK1", pOccupancy, globalParam);
+
+
+************************************************************************ */
+
+
+
+		
+
+
+
+
+// ++++++++++++++++++++++++++ Rule Definitions ++++++++++++++++++++++++++
+		
+alias(rule, AltA-MaxPrice1stBROT1, "AltA-MaxPrice1st BRO T1");
+
+/* ==========================================================================
+ * AltA-MaxPrice1stBROT1
+ *
+ *
+ */
+rule AltA-MaxPrice1stBROT1()
+    if(
+        (pUserType == "Broker")
+      )
+    then
+        maxPrice1st = lookup("AltA-MaxPrice1st BRO LK1", amortType1st, PrepayTerm1st);
+		MaxPrice1stNOO = lookup("AltA-MaxPrice1st NOO BRO LK1", pOccupancy, globalParam);
+		MaxPrice1stLnAmt = lookup("AltA-MaxPrice1st Ln Amt BRO LK1", loanAmount1st, globalParam);
+		MaxPrice1stDocFICO = lookup("AltA-MaxPrice1st DocFICO BRO LK1", pDocumentType, creditScore);
+		
+
+    end
+end	// rule AltA-MaxPrice1stBROT1
+
+
+
+
+
+
+
+
+// +++++++++++++++++++++++++ Ruleset Definitions +++++++++++++++++++++++++
+		
+alias(ruleset, AltA-GetMaxPrice1stT1, "AltA-GetMaxPrice1st T1");
+
+/* ==========================================================================
+ * AltA-GetMaxPrice1stT1
+ *
+ *
+ */
+ruleset AltA-GetMaxPrice1stT1(continue)
+    rule  AltA-MaxPrice1stBROT1();
+
+end // ruleset AltA-GetMaxPrice1stT1
+
+
+
+
+
+
+
+
+// ++++++++++++++++++++++++ Guideline Definition ++++++++++++++++++++++++
+		
+/* ==========================================================================
+ * TESTGUIDELINE-W-LOOKUPS
+ *
+ * ID:         48
+ * Version:    53120
+ * Start Date: Oct 12 2007 10:11PM
+ *
+ */
+guideline("TESTGUIDELINE-W-LOOKUPS")
+
+    ruleset  AltA-GetMaxPrice1stT1();
+
+
+end // guideline TESTGUIDELINE-W-LOOKUPS

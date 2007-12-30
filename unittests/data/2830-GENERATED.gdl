@@ -1,0 +1,309 @@
+/* **************************************************************************
+ * File: data/Z-TEMP-Jeff.xml.gdl
+ * Generated guideline
+ *
+ * *************************************************************************/
+
+
+
+
+
+
+// --------------------------- DPM Definitions ---------------------------
+
+    dpm text    DocTypeAbbrev       "Doc Type Abbrev";
+    dpm money   CombinedLoanAmount      "Combined Loan Amount";
+    dpm text    PurposeAbbrev       "Purpose Abbrev";
+    dpm text    AmortType2nd        "Amort Type 2nd";
+
+
+
+
+// --------------------------- DSM Definitions ---------------------------
+
+decision        dpm percentage  CLTV        "CLTV";
+decision        dpm numeric MaxDTI      "Max DTI";
+
+decision    dpm numeric LTV;
+
+
+
+
+// --------------------------- PPM Definitions ---------------------------
+
+    ppm text    prd pAmortizationType-PDT       "Amortization Type-PDT";
+    ppm text    app pOccupancy      "Occupancy";
+    ppm text    app pStateoftheSubjectProperty      "State of the Subject Property";
+    ppm text    app pDocumentType       "Document Type";
+
+
+
+
+// -------------------------- Rule Definitions --------------------------
+
+alias(rule, AltA-MaxDTIInvestment, "AltA-Max DTI Investment");
+
+/* ==========================================================================
+ * AltA-MaxDTIInvestment
+ *
+ *
+ */
+rule AltA-MaxDTIInvestment()
+    if(
+        (pOccupancy == 'Investment')
+      )
+    then
+        MaxDTI = '50';
+
+    end
+end // rule AltA-MaxDTIInvestment
+
+
+
+
+alias(rule, AltA-MaxDTI1000001Combo, "AltA-Max DTI 1000001 Combo");
+
+/* ==========================================================================
+ * AltA-MaxDTI1000001Combo
+ *
+ *
+ */
+rule AltA-MaxDTI1000001Combo()
+    if(
+        (CombinedLoanAmount > '1000000')
+      )
+    then
+        MaxDTI = '42';
+
+    end
+end // rule AltA-MaxDTI1000001Combo
+
+
+
+
+
+/* ==========================================================================
+ * AltA-MaxDti55IOFullDocCombo
+ *
+ *
+ */
+rule AltA-MaxDti55IOFullDocCombo()
+    if(
+        (DocTypeAbbrev == 'Full Doc') &&
+        (CombinedLoanAmount <= '1000000') &&
+        ((pAmortizationType-PDT == 'IOARM') ||
+        (pAmortizationType-PDT == 'IOFixed'))
+      )
+    then
+        MaxDTI = '55';
+
+    end
+end // rule AltA-MaxDti55IOFullDocCombo
+
+
+
+
+alias(rule, AltA-MaxDTITexasCashOut, "AltA-Max DTI Texas Cash Out");
+
+/* ==========================================================================
+ * AltA-MaxDTITexasCashOut
+ *
+ *
+ */
+rule AltA-MaxDTITexasCashOut()
+    if(
+        (pOccupancy == 'PrimaryResidence') &&
+        (PurposeAbbrev == 'CO') &&
+        (pStateoftheSubjectProperty == 'TX')
+      )
+    then
+        MaxDTI = '45';
+
+    end
+end // rule AltA-MaxDTITexasCashOut
+
+
+
+
+alias(rule, AltA-MaxDtiSivaLiteDoc, "AltA-Max Dti SivaLiteDoc");
+
+/* ==========================================================================
+ * AltA-MaxDtiSivaLiteDoc
+ *
+ *
+ */
+rule AltA-MaxDtiSivaLiteDoc()
+    if(
+        (pDocumentType == 'SIVA') ||
+        (pDocumentType == 'Lite Doc')
+      )
+    then
+        MaxDTI = '50';
+
+    end
+end // rule AltA-MaxDtiSivaLiteDoc
+
+
+
+
+alias(rule, AltA-MaxDTI1000000Combo, "AltA-Max DTI 1000000 Combo");
+
+/* ==========================================================================
+ * AltA-MaxDTI1000000Combo
+ *
+ *
+ */
+rule AltA-MaxDTI1000000Combo()
+    if(
+        ((pOccupancy == 'PrimaryResidence') ||
+        (pOccupancy == 'SecondaryResidence')) &&
+        (CLTV <= '80') &&
+        (CombinedLoanAmount <= '1000000')
+      )
+    then
+        MaxDTI = '55';
+
+    else
+        MaxDTI = '50';
+
+    end
+end // rule AltA-MaxDTI1000000Combo
+
+
+
+
+
+/* ==========================================================================
+ * AltA-MaxDti55IOFullDocHelocCombo
+ *
+ *
+ */
+rule AltA-MaxDti55IOFullDocHelocCombo()
+    if(
+        (DocTypeAbbrev == 'Full Doc') &&
+        (CombinedLoanAmount <= '1000000') &&
+        ((pAmortizationType-PDT == 'IOARM') ||
+        (pAmortizationType-PDT == 'IOFixed')) &&
+        (AmortType2nd == 'HELOC')
+      )
+    then
+        MaxDTI = '55';
+
+    end
+end // rule AltA-MaxDti55IOFullDocHelocCombo
+
+
+
+
+alias(rule, AltA-MaxDTIPriSecResidence, "AltA-Max DTI PriSecResidence");
+
+/* ==========================================================================
+ * AltA-MaxDTIPriSecResidence
+ *
+ *
+ */
+rule AltA-MaxDTIPriSecResidence()
+    if(
+        ((pOccupancy == 'PrimaryResidence') ||
+        (pOccupancy == 'SecondaryResidence'))
+      )
+    then
+        MaxDTI = '50';
+
+    end
+end // rule AltA-MaxDTIPriSecResidence
+
+
+
+
+/* ==========================================================================
+ * MaxDTIReducedDocTypes-AltA
+ *
+ *
+ */
+rule MaxDTIReducedDocTypes-AltA()
+    if(
+        (MaxDTI > 45)   &&
+        (LTV > 80)      &&
+        (
+            (pDocumentType == "SIVA") ||
+            (pDocumentType == "Lite Doc") ||
+            (pDocumentType == "Limited Doc")
+        )
+      )
+    then
+        MaxDTI = 45;
+        message(observation, "Max DTI reduced to 45 for reduced doc type.");
+
+    end
+end // rule AltA-MaxDTIPriSecResidence
+
+
+
+
+
+
+
+
+// ------------------------- RuleSet Definitions -------------------------
+
+alias(ruleset, AltA-MaxDTILimitsCalcRuleset, "AltA-Max DTI Limits Calc Ruleset");
+
+/* ==========================================================================
+ * AltA-MaxDTILimitsCalcRuleset
+ *
+ *
+ */
+ruleset AltA-MaxDTILimitsCalcRuleset(true)
+    rule  MaxDTIReducedDocTypes-AltA();
+    rule  AltA-MaxDtiSivaLiteDoc();
+    rule  AltA-MaxDTIInvestment();
+    rule  AltA-MaxDTIPriSecResidence();
+
+end // ruleset AltA-MaxDTILimitsCalcRuleset
+
+
+
+
+alias(ruleset, AltA-MaxDTILimitsCalcComboRuleset, "AltA-Max DTI Limits Calc Combo Ruleset");
+
+/* ==========================================================================
+ * AltA-MaxDTILimitsCalcComboRuleset
+ *
+ *
+ */
+ruleset AltA-MaxDTILimitsCalcComboRuleset(true)
+    rule  MaxDTIReducedDocTypes-AltA();
+    rule  AltA-MaxDTI1000001Combo();
+    rule  AltA-MaxDTITexasCashOut();
+    rule  AltA-MaxDti55IOFullDocCombo();
+    rule  AltA-MaxDti55IOFullDocHelocCombo();
+    rule  AltA-MaxDTI1000000Combo();
+
+
+end // ruleset AltA-MaxDTILimitsCalcComboRuleset
+
+
+
+
+
+
+
+
+// ------------------------ Guideline Definition ------------------------
+
+/* ==========================================================================
+ * Z-TEMP-Jeff
+ *
+ * ID:         292
+ * Version:    63147
+ * Start Date: Nov 30 2007  3:10PM
+ *
+ */
+guideline("GENERATED")
+
+    ruleset  AltA-MaxDTILimitsCalcRuleset();
+    ruleset  AltA-MaxDTILimitsCalcComboRuleset();
+
+
+end // guideline Z-TEMP-Jeff

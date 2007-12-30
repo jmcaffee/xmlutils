@@ -1,0 +1,180 @@
+rule,AltA-6 Mo Reserves,AltA-6MoReserves
+rule,ALTA-Base Rate 1st,ALTA-BaseRate1st
+rule,AltA-Final Max Price 1st BRO Rule 1,AltA-FinalMaxPrice1stBRORule1
+rule,AltA-Final Max Price 1st BRO Rule 2,AltA-FinalMaxPrice1stBRORule2
+rule,AltA-Final Max Price 1st BRO Rule 3,AltA-FinalMaxPrice1stBRORule3
+rule,AltA-Final Max Price 1st COR Rule 1,AltA-FinalMaxPrice1stCORRule1
+rule,AltA-Final Max Price 1st COR Rule 2,AltA-FinalMaxPrice1stCORRule2
+rule,AltA-Final Max Price 1st COR Rule 3,AltA-FinalMaxPrice1stCORRule3
+rule,AltA-Final Price 1st Comparison Rule 1,AltA-FinalPrice1stComparisonRule1
+rule,AltA-Final Price 1st Comparison Rule 2,AltA-FinalPrice1stComparisonRule2
+rule,AltA-Final Price Adj 1st,AltA-FinalPriceAdj1st
+rule,AltA-GetPriceAdjs BRO T1,AltA-GetPriceAdjsBROT1
+rule,AltA-GetPriceAdjs BRO T1-SubF,AltA-GetPriceAdjsBROT1-SubF
+rule,AltA-GetPriceAdjs COR T1,AltA-GetPriceAdjsCORT1
+rule,AltA-GetPriceAdjs COR T1-SubF,AltA-GetPriceAdjsCORT1-SubF
+rule,AltA-GetPriceAdjs RTN T1,AltA-GetPriceAdjsRTNT1
+rule,AltA-GetPriceAdjs RTN T1-SubF,AltA-GetPriceAdjsRTNT1-SubF
+rule,AltA-Max DTI PI Calc 1,AltA-MaxDTIPICalc1
+rule,AltA-Max DTI PI Calc 2,AltA-MaxDTIPICalc2
+rule,AltA-Max DTI PI Calc 3,AltA-MaxDTIPICalc3
+rule,AltA-Max Pymt Shock PI Calc 1,AltA-MaxPymtShockPICalc1
+rule,AltA-Max Pymt Shock PI Calc 2,AltA-MaxPymtShockPICalc2
+rule,AltA-Max Pymt Shock PI Calc 3,AltA-MaxPymtShockPICalc3
+rule,AltA-MaxPrice1mmLnAmt BRO,AltA-MaxPrice1mmLnAmtBRO
+rule,AltA-MaxPrice1mmLnAmt COR,AltA-MaxPrice1mmLnAmtCOR
+rule,AltA-MaxPrice1mmLnAmt RTN,AltA-MaxPrice1mmLnAmtRTN
+rule,AltA-MaxPrice1st BRO T1,AltA-MaxPrice1stBROT1
+rule,AltA-MaxPrice1st COR T1,AltA-MaxPrice1stCORT1
+rule,AltA-MaxPrice1st RTN T1,AltA-MaxPrice1stRTNT1
+rule,AltA-No MI Flag Set Rule,AltA-NoMIFlagSetRule
+rule,AltA-Payment Shock Calc 1,AltA-PaymentShockCalc1
+rule,AltA-Payment Shock Calc 2,AltA-PaymentShockCalc2
+rule,AltA-Payment Shock Calc 3,AltA-PaymentShockCalc3
+rule,AltA-PriceAdj 40due30 BRO T1,AltA-PriceAdj40due30BROT1
+rule,AltA-PriceAdj 40due30 BRO T1-SubF,AltA-PriceAdj40due30BROT1-SubF
+rule,AltA-PriceAdj 40due30 COR T1,AltA-PriceAdj40due30CORT1
+rule,AltA-PriceAdj 40due30 COR T1-SubF,AltA-PriceAdj40due30CORT1-SubF
+rule,AltA-PriceAdj 40due30 RTN T1,AltA-PriceAdj40due30RTNT1
+rule,AltA-PriceAdj 40due30 RTN T1-SubF,AltA-PriceAdj40due30RTNT1-SubF
+rule,AltA-PriceAdj DocType LT660 BRO T1,AltA-PriceAdjDocTypeLT660BROT1
+rule,AltA-PriceAdj DocType LT660 BRO T1-SubF,AltA-PriceAdjDocTypeLT660BROT1-SubF
+rule,AltA-PriceAdj DocType LT660 COR T1,AltA-PriceAdjDocTypeLT660CORT1
+rule,AltA-PriceAdj DocType LT660 COR T1-SubF,AltA-PriceAdjDocTypeLT660CORT1-SubF
+rule,AltA-PriceAdj DocType LT660 RTN T1,AltA-PriceAdjDocTypeLT660RTNT1
+rule,AltA-PriceAdj DocType LT660 RTN T1-SubF,AltA-PriceAdjDocTypeLT660RTNT1-SubF
+rule,AltA-PriceAdj Fxd LnAmt BRO T1,AltA-PriceAdjFxdLnAmtBROT1
+rule,AltA-PriceAdj Fxd LnAmt BRO T1-SubF,AltA-PriceAdjFxdLnAmtBROT1-SubF
+rule,AltA-PriceAdj Fxd LnAmt COR T1,AltA-PriceAdjFxdLnAmtCORT1
+rule,AltA-PriceAdj Fxd LnAmt COR T1-SubF,AltA-PriceAdjFxdLnAmtCORT1-SubF
+rule,AltA-PriceAdj Fxd LnAmt RTN T1,AltA-PriceAdjFxdLnAmtRTNT1
+rule,AltA-PriceAdj Fxd LnAmt RTN T1-SubF,AltA-PriceAdjFxdLnAmtRTNT1-SubF
+rule,AltA-PriceAdj IO Fixed BRO T1,AltA-PriceAdjIOFixedBROT1
+rule,AltA-PriceAdj IO Fixed BRO T1-SubF,AltA-PriceAdjIOFixedBROT1-SubF
+rule,AltA-PriceAdj IO Fixed COR T1,AltA-PriceAdjIOFixedCORT1
+rule,AltA-PriceAdj IO Fixed COR T1-SubF,AltA-PriceAdjIOFixedCORT1-SubF
+rule,AltA-PriceAdj IO Fixed RTN T1,AltA-PriceAdjIOFixedRTNT1
+rule,AltA-PriceAdj IO Fixed RTN T1-SubF,AltA-PriceAdjIOFixedRTNT1-SubF
+rule,AltA-PriceAdj NoEscrow BRO T1,AltA-PriceAdjNoEscrowBROT1
+rule,AltA-PriceAdj NoEscrow COR T1,AltA-PriceAdjNoEscrowCORT1
+rule,AltA-PriceAdj NoEscrow COR T1-SubF,AltA-PriceAdjNoEscrowCORT1-SubF
+rule,AltA-PriceAdj NoEscrow RTN T1,AltA-PriceAdjNoEscrowRTNT1
+rule,AltA-PriceAdj NoEscrow RTN T1-SubF,AltA-PriceAdjNoEscrowRTNT1-SubF
+rule,AltA-PriceAdj NOO LnAmt BRO T1,AltA-PriceAdjNOOLnAmtBROT1
+rule,AltA-PriceAdj NOO LnAmt BRO T1-SubF,AltA-PriceAdjNOOLnAmtBROT1-SubF
+rule,AltA-PriceAdj NOO LnAmt COR T1,AltA-PriceAdjNOOLnAmtCORT1
+rule,AltA-PriceAdj NOO LnAmt COR T1-SubF,AltA-PriceAdjNOOLnAmtCORT1-SubF
+rule,AltA-PriceAdj NOO LnAmt RTN T1,AltA-PriceAdjNOOLnAmtRTNT1
+rule,AltA-PriceAdj NOO LnAmt RTN T1-SubF,AltA-PriceAdjNOOLnAmtRTNT1-SubF
+rule,AltA-PriceAdj Region-NPP-High,AltA-PriceAdjRegion-NPP-High
+rule,AltA-PriceAdj Region-NPP-Low,AltA-PriceAdjRegion-NPP-Low
+rule,AltA-PriceAdj Region-PP-High,AltA-PriceAdjRegion-PP-High
+rule,AltA-PriceAdj Region-PP-Low,AltA-PriceAdjRegion-PP-Low
+rule,AltA-PriceAdjCombo NoEscrow BRO T1-SubF,AltA-PriceAdjComboNoEscrowBROT1-SubF
+rule,ALTA-Prop Cons Debt and Tot Inc,ALTA-PropConsDebtandTotInc
+rule,AltA-RateAdjCombo DocType BRO,AltA-RateAdjComboDocTypeBRO
+rule,AltA-RateAdjCombo DocType COR,AltA-RateAdjComboDocTypeCOR
+rule,AltA-RateAdjCombo DocType RTN,AltA-RateAdjComboDocTypeRTN
+rule,AltA-RateAdjCombo NOOCltv BRO,AltA-RateAdjComboNOOCltvBRO
+rule,AltA-RateAdjCombo NOOCltv COR,AltA-RateAdjComboNOOCltvCOR
+rule,AltA-RateAdjCombo NOOCltv RTN,AltA-RateAdjComboNOOCltvRTN
+rule,AltA-RateAdjDocType BRO,AltA-RateAdjDocTypeBRO
+rule,AltA-RateAdjDocType COR,AltA-RateAdjDocTypeCOR
+rule,AltA-RateAdjDocType RTN,AltA-RateAdjDocTypeRTN
+rule,AltA-RateAdjNOOCltv BRO,AltA-RateAdjNOOCltvBRO
+rule,AltA-RateAdjNOOCltv COR,AltA-RateAdjNOOCltvCOR
+rule,AltA-RateAdjNOOCltv RTN,AltA-RateAdjNOOCltvRTN
+rule,AltA-Sub Fin Set Flag,AltA-SubFinSetFlag
+rule,AltA-Total Price Adj 1st,AltA-TotalPriceAdj1st
+rule,AltA-Total Rate 1st,AltA-TotalRate1st
+rule,AltA-Total Rate Adj 1st,AltA-TotalRateAdj1st
+rule,G-1st 2nd Loan Parameters,G-1st2ndLoanParameters
+rule,G-1st Amort Type 1,G-1stAmortType1
+rule,G-1st Amort Type 2,G-1stAmortType2
+rule,G-1st Amort Type 3,G-1stAmortType3
+rule,G-1st Amort Type 4,G-1stAmortType4
+rule,G-1st Amort Type 5,G-1stAmortType5
+rule,G-1st Amort Type 6,G-1stAmortType6
+rule,G-1st Amort Type 7,G-1stAmortType7
+rule,G-1st Amort Type 8,G-1stAmortType8
+rule,G-1st Amort Type 9,G-1stAmortType9
+rule,G-1st IO Indicator,G-1stIOIndicator
+rule,G-1st Loan Check Rule,G-1stLoanCheckRule
+rule,G-Cond LockRequired,G-CondLockRequired
+rule,G-Correspondent with No Price Rule,G-CorrespondentwithNoPriceRule
+rule,G-DTI Calc,G-DTICalc
+rule,G-DTI POS Calc,G-DTIPOSCalc
+rule,G-Locked Rate Lien 1,G-LockedRateLien1
+rule,G-Locked Rate Lien 2,G-LockedRateLien2
+rule,G-Other Prop Cash Flow,G-OtherPropCashFlow
+rule,G-PITI Calc Rule,G-PITICalcRule
+rule,G-PriceAdj IO SOA,G-PriceAdjIOSOA
+rule,G-Pricing Initialization,G-PricingInitialization
+rule,G-Prop Hsg Cost Calc,G-PropHsgCostCalc
+rule,G-Rate Adj TX CashOut BRO T1,G-RateAdjTXCashOutBROT1
+rule,G-Rate Adj TX CashOut RTN T1,G-RateAdjTXCashOutRTNT1
+rule,G-Set 40due30 Flag,G-Set40due30Flag
+rule,G-Sub Prop Cash Flow 1,G-SubPropCashFlow1
+rule,G-Sub Prop Cash Flow 2,G-SubPropCashFlow2
+rule,G-Total Cash Flow Calc 1,G-TotalCashFlowCalc1
+rule,G-Total Cash Flow Calc 2,G-TotalCashFlowCalc2
+rule,G-Total Income,G-TotalIncome
+rule,NoMI-PriceAdj Region-NPP-High,NoMI-PriceAdjRegion-NPP-High
+rule,NoMI-PriceAdj Region-NPP-Low,NoMI-PriceAdjRegion-NPP-Low
+rule,NoMI-PriceAdj Region-PP-High,NoMI-PriceAdjRegion-PP-High
+rule,NoMI-PriceAdj Region-PP-Low,NoMI-PriceAdjRegion-PP-Low
+rule,OptA-PriceAdj Region-NPP-High,OptA-PriceAdjRegion-NPP-High
+rule,OptA-PriceAdj Region-NPP-Low,OptA-PriceAdjRegion-NPP-Low
+rule,OptA-PriceAdj Region-PP-High,OptA-PriceAdjRegion-PP-High
+rule,OptA-PriceAdj Region-PP-Low,OptA-PriceAdjRegion-PP-Low
+rule,Pref-PriceAdj Region-NPP-High,Pref-PriceAdjRegion-NPP-High
+rule,Pref-PriceAdj Region-NPP-Low,Pref-PriceAdjRegion-NPP-Low
+rule,Pref-PriceAdj Region-PP-High,Pref-PriceAdjRegion-PP-High
+rule,Pref-PriceAdj Region-PP-Low,Pref-PriceAdjRegion-PP-Low
+rule,PrefSOA-PriceAdj Region-NPP-High,PrefSOA-PriceAdjRegion-NPP-High
+rule,PrefSOA-PriceAdj Region-NPP-Low,PrefSOA-PriceAdjRegion-NPP-Low
+rule,PrefSOA-PriceAdj Region-PP-High,PrefSOA-PriceAdjRegion-PP-High
+rule,PrefSOA-PriceAdj Region-PP-Low,PrefSOA-PriceAdjRegion-PP-Low
+rule,SOA-PriceAdj Region-NPP-High,SOA-PriceAdjRegion-NPP-High
+rule,SOA-PriceAdj Region-NPP-Low,SOA-PriceAdjRegion-NPP-Low
+rule,SOA-PriceAdj Region-PP-High,SOA-PriceAdjRegion-PP-High
+rule,SOA-PriceAdj Region-PP-Low,SOA-PriceAdjRegion-PP-Low
+rule,SOA-PriceAdj SOA CLTV BRO LK1,SOA-PriceAdjSOACLTVBROLK1
+rule,SOA-PriceAdj SOA CLTV BRO LK1SubF,SOA-PriceAdjSOACLTVBROLK1SubF
+rule,SOA-PriceAdj SOA CLTV COR LK1,SOA-PriceAdjSOACLTVCORLK1
+rule,SOA-PriceAdj SOA CLTV COR LK1SubF,SOA-PriceAdjSOACLTVCORLK1SubF
+rule,SOA-PriceAdj SOA CLTV COR LK2,SOA-PriceAdjSOACLTVCORLK2
+rule,SOA-PriceAdj SOA CLTV COR LK2SubF,SOA-PriceAdjSOACLTVCORLK2SubF
+rule,SOA-PriceAdj SOA CLTV RTN LK1,SOA-PriceAdjSOACLTVRTNLK1
+rule,SOA-PriceAdj SOA CLTV RTN LK1SubF,SOA-PriceAdjSOACLTVRTNLK1SubF
+rule,SubP-PriceAdj Region-NPP-High,SubP-PriceAdjRegion-NPP-High
+rule,SubP-PriceAdj Region-NPP-Low,SubP-PriceAdjRegion-NPP-Low
+rule,SubP-PriceAdj Region-PP-High,SubP-PriceAdjRegion-PP-High
+rule,SubP-PriceAdj Region-PP-Low,SubP-PriceAdjRegion-PP-Low
+rule,ZAltA-Max DTI PI Calc 4,ZAltA-MaxDTIPICalc4
+ruleset,AltA-Amort Type 1st Ruleset,AltA-AmortType1stRuleset
+ruleset,AltA-Final Max Price 1st BRO Ruleset,AltA-FinalMaxPrice1stBRORuleset
+ruleset,AltA-Final Max Price 1st COR Ruleset,AltA-FinalMaxPrice1stCORRuleset
+ruleset,AltA-GetMaxPrice1st T1,AltA-GetMaxPrice1stT1
+ruleset,AltA-Max DTI PI Calc Ruleset,AltA-MaxDTIPICalcRuleset
+ruleset,AltA-Max Pymt Shock PI Calc Ruleset,AltA-MaxPymtShockPICalcRuleset
+ruleset,AltA-Payment Shock Calc Ruleset,AltA-PaymentShockCalcRuleset
+ruleset,AltA-ProgramType,AltA-ProgramType
+ruleset,AltA-RateAdj 1st ruleset,AltA-RateAdj1struleset
+ruleset,AltA-SetPriceAdjustments1st T1,AltA-SetPriceAdjustments1stT1
+ruleset,AltA-SetPriceAdjustments1st T1-SubF,AltA-SetPriceAdjustments1stT1-SubF
+ruleset,G-CalcExtensionFees,G-CalcExtensionFees
+ruleset,G-CalcPi1st-BasedOnType,G-CalcPi1st-BasedOnType
+ruleset,G-CalcQualRate,G-CalcQualRate
+ruleset,G-GetExceptionAdjs-Lien1,G-GetExceptionAdjs-Lien1
+ruleset,G-GetRequestedRateMarginLien1,G-GetRequestedRateMarginLien1
+ruleset,G-Locked Rate Ruleset,G-LockedRateRuleset
+ruleset,G-MaxPaymentShockCalc,G-MaxPaymentShockCalc
+ruleset,G-OverrideMaxPrice,G-OverrideMaxPrice
+ruleset,G-PriceAdj Region Ruleset,G-PriceAdjRegionRuleset
+ruleset,G-PricingCleanup,G-PricingCleanup
+ruleset,G-Rate Adj TX CashOut,G-RateAdjTXCashOut
+ruleset,G-RegionCode Ruleset,G-RegionCodeRuleset
+ruleset,G-RemoveExtensionFees,G-RemoveExtensionFees
+ruleset,G-Sub Prop Cash Flow Ruleset,G-SubPropCashFlowRuleset
+ruleset,WC-WorstCasePricing-Rate,WC-WorstCasePricing-Rate

@@ -1,0 +1,142 @@
+/* **************************************************************************
+ * File: data/Message.xml.gdl
+ * Guideline generated: 12/05/2007 09:29:45
+ *
+ * *************************************************************************/
+
+	
+
+
+
+
+// --------------------------- DPM Definitions ---------------------------
+		
+	dpm	numeric	fLimitLTV80Zip		"fLimitLTV80Zip";
+	dpm	numeric	fLimitRuralZip		"fLimitRuralZip";
+
+
+
+
+// --------------------------- DSM Definitions ---------------------------
+		
+decision		dpm	text	Decision		"Decision";
+decision		dpm	numeric	LTV		"LTV";
+decision		dpm	numeric	maxCLTV		"Max CLTV";
+decision		dpm	numeric	maxLTV		"Max LTV";
+
+
+
+
+// --------------------------- PPM Definitions ---------------------------
+		
+	ppm	money	app	pLoanAmount		"Loan Amount";
+
+
+
+
+/* ************************************************************************
+                  -- Lookups that need to be imported --                  
+
+
+************************************************************************ */
+		
+
+
+
+
+// -------------------------- Rule Definitions --------------------------
+		
+
+/* ==========================================================================
+ * Exptn-PoconoPa
+ *
+ *
+ */
+rule Exptn-PoconoPa()
+    if(
+        (LTV > 80) &&
+		(fLimitRuralZip == 1)
+      )
+    then
+        Decision = "Referred";
+		
+        message(exception,  exception, "Rural Properties in the Pocono Region of PA have a Max LTV of 80%.");
+
+    end
+end	// rule Exptn-PoconoPa
+
+
+
+
+alias(rule, G-CondBrokerSubmissionForm, "G-Cond BrokerSubmissionForm");
+
+/* ==========================================================================
+ * G-CondBrokerSubmissionForm
+ *
+ *
+ */
+rule G-CondBrokerSubmissionForm()
+    if(
+        (pLoanAmount > 0)
+      )
+    then
+        
+        condition(asset, docs, "Broker must submit 'Broker Submission Form' with underwriting package.");
+
+    end
+end	// rule G-CondBrokerSubmissionForm
+
+
+
+
+
+/* ==========================================================================
+ * G-MaxLTV80Zip
+ *
+ *
+ */
+rule G-MaxLTV80Zip()
+    if(
+        (maxLTV > 80) &&
+		(fLimitLTV80Zip == 1)
+      )
+    then
+        maxLTV = 80;
+		maxCLTV = 80;
+		
+        message(observation, "Subject Property is within the MSA boundaries. Max LTV/CLTV is 80%.");
+
+    end
+end	// rule G-MaxLTV80Zip
+
+
+
+
+
+
+
+
+// ------------------------- Ruleset Definitions -------------------------
+		
+
+
+
+
+// ------------------------ Guideline Definition ------------------------
+		
+/* ==========================================================================
+ * Z-TEMP
+ *
+ * ID:         80
+ * Version:    63268
+ * Start Date: Nov 30 2007  7:11PM
+ *
+ */
+guideline("Z-TEMP")
+
+    rule  G-MaxLTV80Zip();
+    rule  Exptn-PoconoPa();
+    rule  G-CondBrokerSubmissionForm();
+
+
+end // guideline Z-TEMP

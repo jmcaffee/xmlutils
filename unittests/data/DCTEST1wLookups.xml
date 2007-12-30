@@ -1,0 +1,174 @@
+<GuidelineRoot>
+	<Guideline GuidelineID="48" Name="TESTGUIDELINE-W-LOOKUPS" Version="53120" StartDate="Oct 12 2007 10:11PM">
+		<Ruleset Id="2027" Name="AltA-GetMaxPrice1st T1" ExecuteType="3" Type="0">
+			<Rule Id="20480" Name="AltA-MaxPrice1st BRO T1">
+				<IfMessages/>
+				<ElseMessages/>
+				<Condition>
+					<Expression>
+						<Brace>
+							<Compute>
+								<Operator>==</Operator>
+								<LeftOperand>
+									<PPM Name="User Type" Type="APM"/>
+								</LeftOperand>
+								<RightOperand>
+									<Constant>Broker</Constant>
+								</RightOperand>
+							</Compute>
+						</Brace>
+					</Expression>
+				</Condition>
+				<IfActions>
+					<Assign>
+						<AssignTo>
+							<DPM Name="Max Price 1st" Type="DPM" Order="0" ProductType="3"/>
+						</AssignTo>
+						<AssignValue>
+							<Lookup ID="1486" Name="AltA-MaxPrice1st BRO LK1"/>
+						</AssignValue>
+					</Assign>
+					<Assign>
+						<AssignTo>
+							<DPM Name="Max Price 1st NOO" Type="DPM" Order="0" ProductType="3"/>
+						</AssignTo>
+						<AssignValue>
+							<Lookup ID="1493" Name="AltA-MaxPrice1st NOO BRO LK1"/>
+						</AssignValue>
+					</Assign>
+					<Assign>
+						<AssignTo>
+							<DPM Name="Max Price 1st Ln Amt" Type="DPM" Order="0" ProductType="3"/>
+						</AssignTo>
+						<AssignValue>
+							<Lookup ID="1494" Name="AltA-MaxPrice1st Ln Amt BRO LK1"/>
+						</AssignValue>
+					</Assign>
+					<Assign>
+						<AssignTo>
+							<DPM Name="Max Price 1st DocFICO" Type="DPM" Order="0" ProductType="3"/>
+						</AssignTo>
+						<AssignValue>
+							<Lookup ID="6983" Name="AltA-MaxPrice1st DocFICO BRO LK1"/>
+						</AssignValue>
+					</Assign>
+				</IfActions>
+			</Rule>
+		</Ruleset>
+	</Guideline>
+	<LOOKUPS>
+		<LOOKUP Name="AltA-MaxPrice1st BRO LK1">
+			<XParameter>
+				<DPM Name="Amort Type 1st" DataType="Text" Type="DPM" Order="0" ProductType="6"/>
+			</XParameter>
+			<YParameter>
+				<DPM Name="Prepay Term 1st" DataType="Text" Type="DPM" Order="0" ProductType="4"/>
+			</YParameter>
+			<Row MinValue="Fixed 30" MaxValue="Fixed 30">
+				<Column MinValue="0" MaxValue="0">-1.500</Column>
+				<Column MinValue="4" MaxValue="4">-1.500</Column>
+				<Column MinValue="12" MaxValue="12">0.000</Column>
+				<Column MinValue="24" MaxValue="24">0.000</Column>
+				<Column MinValue="36" MaxValue="36">0.000</Column>
+			</Row>
+			<Row MinValue="Fixed 15" MaxValue="Fixed 15">
+				<Column MinValue="0" MaxValue="0">-1.500</Column>
+				<Column MinValue="4" MaxValue="4">-1.500</Column>
+				<Column MinValue="12" MaxValue="12">0.000</Column>
+				<Column MinValue="24" MaxValue="24">0.000</Column>
+				<Column MinValue="36" MaxValue="36">0.000</Column>
+			</Row>
+			<Row MinValue="2/6 Mo Libor" MaxValue="2/6 Mo Libor">
+				<Column MinValue="0" MaxValue="0">0.000</Column>
+				<Column MinValue="4" MaxValue="4">0.000</Column>
+				<Column MinValue="12" MaxValue="12">0.000</Column>
+				<Column MinValue="24" MaxValue="24">0.000</Column>
+				<Column MinValue="36" MaxValue="36">0.000</Column>
+			</Row>
+			<Row MinValue="3/6 Mo Libor" MaxValue="3/6 Mo Libor">
+				<Column MinValue="0" MaxValue="0">-1.500</Column>
+				<Column MinValue="4" MaxValue="4">-1.500</Column>
+				<Column MinValue="12" MaxValue="12">-1.500</Column>
+				<Column MinValue="24" MaxValue="24">-1.500</Column>
+				<Column MinValue="36" MaxValue="36">-1.500</Column>
+			</Row>
+			<Row MinValue="5/6 Mo Libor" MaxValue="5/6 Mo Libor">
+				<Column MinValue="0" MaxValue="0">-1.500</Column>
+				<Column MinValue="4" MaxValue="4">-1.500</Column>
+				<Column MinValue="12" MaxValue="12">-1.500</Column>
+				<Column MinValue="24" MaxValue="24">-1.500</Column>
+				<Column MinValue="36" MaxValue="36">-1.500</Column>
+			</Row>
+			<Row MinValue="7/6 Mo Libor" MaxValue="7/6 Mo Libor">
+				<Column MinValue="0" MaxValue="0">-1.500</Column>
+				<Column MinValue="4" MaxValue="4">-1.500</Column>
+				<Column MinValue="12" MaxValue="12">-1.500</Column>
+				<Column MinValue="24" MaxValue="24">-1.500</Column>
+				<Column MinValue="36" MaxValue="36">-1.500</Column>
+			</Row>
+			<Row MinValue="10/6 Mo Libor" MaxValue="10/6 Mo Libor">
+				<Column MinValue="0" MaxValue="0">-1.500</Column>
+				<Column MinValue="4" MaxValue="4">-1.500</Column>
+				<Column MinValue="12" MaxValue="12">-1.500</Column>
+				<Column MinValue="24" MaxValue="24">-1.500</Column>
+				<Column MinValue="36" MaxValue="36">-1.500</Column>
+			</Row>
+			<Row MinValue="6 Mo Libor" MaxValue="6 Mo Libor">
+				<Column MinValue="0" MaxValue="0">-1.500</Column>
+				<Column MinValue="4" MaxValue="4">-1.500</Column>
+				<Column MinValue="12" MaxValue="12">-1.500</Column>
+				<Column MinValue="24" MaxValue="24">-1.500</Column>
+				<Column MinValue="36" MaxValue="36">-1.500</Column>
+			</Row>
+			<Row MinValue="5 Yr OptA" MaxValue="5 Yr OptA">
+				<Column MinValue="0" MaxValue="0">0.000</Column>
+				<Column MinValue="4" MaxValue="4">0.000</Column>
+				<Column MinValue="12" MaxValue="12">0.000</Column>
+				<Column MinValue="24" MaxValue="24">0.000</Column>
+				<Column MinValue="36" MaxValue="36">0.000</Column>
+			</Row>
+		</LOOKUP>
+		<LOOKUP Name="AltA-MaxPrice1st NOO BRO LK1">
+			<XParameter>
+				<PPM Name="Occupancy" DataType="Text" Type="APM"/>
+			</XParameter>
+			<YParameter>
+				<DPM Name="Global Parameter" DataType="Numeric" Type="DPM" Order="0" ProductType="4"/>
+			</YParameter>
+			<Row MinValue="Investment" MaxValue="Investment">
+				<Column MinValue="1" MaxValue="1">-1.500</Column>
+			</Row>
+		</LOOKUP>
+		<LOOKUP Name="AltA-MaxPrice1st Ln Amt BRO LK1">
+			<XParameter>
+				<DPM Name="Loan Amount 1st" DataType="Money" Type="DPM" Order="0" ProductType="3"/>
+			</XParameter>
+			<YParameter>
+				<DPM Name="Global Parameter" DataType="Text" Type="DPM" Order="0" ProductType="4"/>
+			</YParameter>
+			<Row MinValue="650001" MaxValue="1500000">
+				<Column MinValue="1" MaxValue="1">-2.000</Column>
+			</Row>
+			<Row MinValue="1500001" MaxValue="10000000">
+				<Column MinValue="1" MaxValue="1">-1.000</Column>
+			</Row>
+		</LOOKUP>
+		<LOOKUP Name="AltA-MaxPrice1st DocFICO BRO LK1">
+			<XParameter>
+				<PPM Name="Document Type" DataType="Text" Type="APM"/>
+			</XParameter>
+			<YParameter>
+				<DPM Name="Credit Score" DataType="Numeric" Type="DSM" Order="0" ProductType="4"/>
+			</YParameter>
+			<Row MinValue="NINA" MaxValue="NINA">
+				<Column MinValue="450" MaxValue="659">-11.500</Column>
+			</Row>
+			<Row MinValue="No Doc" MaxValue="No Doc">
+				<Column MinValue="450" MaxValue="659">-11.500</Column>
+			</Row>
+			<Row MinValue="No Doc with Assets" MaxValue="No Doc with Assets">
+				<Column MinValue="450" MaxValue="659">-11.500</Column>
+			</Row>
+		</LOOKUP>
+	</LOOKUPS>
+</GuidelineRoot>
