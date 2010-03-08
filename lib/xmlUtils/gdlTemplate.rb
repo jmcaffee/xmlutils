@@ -34,12 +34,13 @@ class GdlTemplate
 # returns - File header text
 #
 #------------------------------------------------------------------------------------------------------------#
-	def fileHeader(fname, curDate)
+	def fileHeader(fname, curDate, misc="")
 		header = <<EOF
 /* **************************************************************************
  * File: #{fname}.gdl
  *
  * Guideline source generated #{curDate}
+ * #{misc}
  *
  * *************************************************************************/
 
@@ -144,8 +145,12 @@ EOF
 #
 #------------------------------------------------------------------------------------------------------------#
 	def ppm(dataType, ppmType, varName, varAlias)
-		out = <<EOF
-	ppm	#{dataType}	#{ppmType}	#{varName}		"#{varAlias}";
+    dt = dataType.ljust(12)
+    pt = ppmType.ljust(12)
+    vn = varName.ljust(48)
+    va = varAlias
+    out = <<EOF
+ppm #{dt}#{pt}#{vn}"#{va}";
 EOF
 		
 		out																								# Return generated output
