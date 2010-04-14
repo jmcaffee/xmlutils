@@ -15,6 +15,8 @@ require 'xmlUtils/gdlContextObjs'
 #################################################
 class GdlContext
 	
+	attr_reader		:options
+	
 	attr_accessor :rules
 	attr_accessor :ppms
 	attr_accessor :dpms
@@ -35,6 +37,11 @@ class GdlContext
 		
 		
 	end # initialize
+	
+	
+	def setOptions(options)
+		@options = options
+	end # setOptions
 	
 	
 #-------------------------------------------------------------------------------------------------------------#

@@ -21,16 +21,14 @@ require 'date'
 class GdlDoc
 	
   attr_reader :context
-  attr_reader :srcFile
-  attr_reader :rootDir
+  attr_reader :srcPath
 
   
 
 
-	def initialize(srcFile, rootDir, ctx)
+	def initialize(srcPath, ctx)
 		super()
-		@srcFile			= srcFile
-		@rootDir 			= rootDir
+		@srcPath			= srcPath
 		@context 			= ctx
 	end
 	
@@ -85,22 +83,29 @@ class GdlDoc
 #
 #------------------------------------------------------------------------------------------------------------#
 	def generate()
+		destDir = @context.options[:destdir]
+		destFile = @context.options[:destfile]
+		if(nil == destFile || destFile.empty?)
+			destFile = File.basename(@srcPath, ".xml") + ".gdl"
+		end
+		
 		if ($DEBUG)
 			puts "generate:"
-			puts "       source: #{@srcFile}"
-			puts "      rootDir: #{@rootDir}"
+			puts "   sourcePath: #{@srcPath}"
+			puts "      destDir: #{destDir}"
+			puts "     destFile: #{destFile}"
 			puts "      context: #{@context}"
 		end # if $DEBUG
 		
 		tpl = GdlTemplate.new
 		
-		genFile = "#{@rootDir}/#{@srcFile}.gdl"
+		genFile = File.join(destDir, destFile)
 		
-		createOutdir(@rootDir)
+		createOutdir(destDir)
 
 		File.open("#{genFile}", "w") do |ofile|
 		
-			ofile << tpl.fileHeader(@srcFile, currentDate() )
+			ofile << tpl.fileHeader(@srcPath, currentDate() )
 
 
 			ofile << tpl.sectionComment("DPM Definitions")
@@ -200,16 +205,24 @@ class GdlDoc
 #
 #------------------------------------------------------------------------------------------------------------#
 	def generateRenameList()
+		destDir = @context.options[:destdir]
+		destFile = @context.options[:destfile]
+		if(nil == destFile || destFile.empty?)
+			destFile = File.basename(@srcPath, ".xml") + ".gdl"
+		end
+		
+		destFile = File.basename(destFile, ".gdl") + ".rename.csv"
+		
 		if ($DEBUG)
 			puts "generateRenameList:"
-			puts "       source: #{@srcFile}"
-			puts "      rootDir: #{@rootDir}"
+			puts "   sourcePath: #{@srcPath}"
+			puts "      destDir: #{destDir}"
 			puts "      context: #{@context}"
 		end # if $DEBUG
 		
-		genFile = "#{@rootDir}/#{@srcFile}.rename.csv"
+		genFile = File.join(destDir, destFile)
 		
-		createOutdir(@rootDir)
+		createOutdir(destDir)
 
 		File.open("#{genFile}", "w") do |ofile|
 		

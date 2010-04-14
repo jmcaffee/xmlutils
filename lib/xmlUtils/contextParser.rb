@@ -71,7 +71,7 @@ class ContextParser
 # fname	- Filename of XML file to parse
 #
 #------------------------------------------------------------------------------------------------------------#
-	def parse(fname, dummy)
+	def parse(fname)
 		puts "Parsing file." unless (!verbose?)
 		ctxListener 				= ContextListener.new(@context)
 		ctxListener.verbose	= @verbose

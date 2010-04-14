@@ -1,37 +1,87 @@
+##############################################################################
+# File:: xmltogdl.rb
+# Purpose:: Utility to convert XML guideline files to gdl source
+# 
+# Author::    Jeff McAffee 03/07/2010
+# Copyright:: Copyright (c) 2010, kTech Systems LLC. All rights reserved.
+# Website::   http://ktechsystems.com
+##############################################################################
+
 require 'xmlUtils'
-
-def usage()
-	puts 
-	puts "Usage:"
-	puts "xmltogdl FILENAME [OPTIONS]"
-	puts 
-	puts "Converts XML guideline file to GDL language."
-	puts
-	
-	exit
-end # usage
-
-if ($DEBUG)
-	puts "ARG count: #{ARGV.length.to_s}"
-
-end # debug
-
-if (ARGV.length < 1)
-	usage
-end # if no args
+require 'user-choices'
 
 
-fname = ARGV.shift
+class XmlToGdlApp < UserChoices::Command
+    include UserChoices
 
-puts "Converting file: #{fname}"
+    
+    def initialize()
+        super
+        @controller = XmlToGdlController.new
+    end
+    
+    
+    def add_sources(builder)
+        builder.add_source(CommandLineSource, :usage,
+                            "Usage: #{$0} [options] SRC_XML_FILE OUTPUT_FILE",
+                            "XmlToGdl can parse a guideline.xml file and generate GDL source code from it.",
+                            "If SRC_XML_FILE does not end with an xml extension, .xml will be added.")
+    end # def add_sources
+    
+    
+    def add_choices(builder)
+        # Arguments
+        builder.add_choice(:cmdArg, :length=>2) { |command_line|   # Use length to REQUIRE args.
+        #builder.add_choice(:cmdArg) { |command_line|
+            command_line.uses_arglist
+        }
+        
+        # Switches
+        builder.add_choice(:verbose, :type=>:boolean, :default=>false) { |command_line|
+            command_line.uses_switch("-v", "--verbose",
+                                    "Turn on verbose output.")
+        }
+        
+        # Options
+        builder.add_choice(:includes, :type=>[:string]) { |command_line|
+            command_line.uses_option("-i", "--includes ARG1[, ARG2, ARG3, ...]",
+                                    "Include external variable definition files.",
+									"Seperate multiple files with a comma.")
+        }
+        
+    end # def add_choices
+    
+    
+    # Execute the XmlToGdl application.
+    # This method is called automatically when 'xmltogdl(.rb)' is executed from the command line.
+    def execute
+      $LOG.debug "XmlToGdlApp::execute"
 
-curDir = Dir.getwd
-puts "Working dir: #{curDir}"
+      if(@user_choices[:includes])
+        @user_choices[:includes].each do |inc|
+			@controller.addInclude(inc)
+		end
+      end
+      
+      if(@user_choices[:verbose])
+        @controller.setVerbose(@user_choices[:verbose])
+      end
+      
+      if(@user_choices[:cmdArg].empty?) # If no cmd line arg...
+        @controller.noCmdLineArg()
+        return
+      end
+      
+      result = @controller.setFilenames(@user_choices[:cmdArg])
+      
+      @controller.doSomething()
+    end # def execute
+        
+    
+end # class XmlToGdlApp
 
 
-docBuilder = GdlDocBuilder.new(ARGV)
-docBuilder.createDocument(fname, curDir)
-
-
-
+if $0 == __FILE__
+    XmlToGdlApp.new.execute
+end    
 

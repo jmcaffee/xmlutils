@@ -32,6 +32,7 @@ class GdlDocBuilder
 	def initialize(options)
 		@options 	= options	
 		@context	= GdlContext.new
+		@context.setOptions(@options)
 	end # initialize
 	
 	
@@ -41,10 +42,9 @@ class GdlDocBuilder
 # createDocument - create a GDL document from an XML document
 #
 # srcFile	- XML source file
-#	rootDor	- root directory
 #
 #------------------------------------------------------------------------------------------------------------#
-	def createDocument(srcFile, rootDir)
+	def createDocument(srcFile)
 
 		# Setup context object builder
 		ctxBuilder = ContextParser.new(@context)
@@ -52,7 +52,7 @@ class GdlDocBuilder
 
 		statusMsg "Creating guideline context."
 
-		ctxBuilder.parse(srcFile, rootDir)
+		ctxBuilder.parse(srcFile)
 
 		printMetrics(@context)
 		
@@ -82,7 +82,7 @@ class GdlDocBuilder
 		# Create output file and output src.
 		statusMsg "Generating document."
 		
-		gdlDoc = GdlDoc.new(srcFile, rootDir, @context)
+		gdlDoc = GdlDoc.new(srcFile, @context)
 		gdlDoc.setOptions(@options)
 		
 		genFile = gdlDoc.generate
@@ -144,9 +144,9 @@ class GdlDocBuilder
 	def parseExternalVarDefs(ctx)
 		
 		vp = LineParser.new											# Parse externally defined GDL variable definition files.
-		vp.parse("R:/common/inc/DPMs.gdl")			# TODO: Allow external var def files to be defined in a config file.
-		vp.parse("R:/common/inc/DSMs.gdl")
-		vp.parse("R:/common/inc/PPMs.gdl")
+		ctx.options[:includes].each do |inc|
+			vp.parse(inc)			# TODO: Allow external var def files to be defined in a config file.
+		end # ctx.options.each
 		
 		vp.dumpResults if $DEBUG
 		
