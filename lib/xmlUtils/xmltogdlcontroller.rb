@@ -62,14 +62,14 @@ class XmlToGdlController
     @srcPath  = arg[0]
     @destPath = arg[1]
 	
-	@srcPath  = KtCommon.formatPath(@srcPath, :unix)
-	@destPath = KtCommon.formatPath(@destPath, :unix)
+	@srcPath  = File.rubypath(@srcPath)
+	@destPath = File.rubypath(@destPath)
   end
       
   
   def addInclude(arg)
     $LOG.debug "XmlToGdlController::addInclude( #{arg} )"
-    arg = KtCommon.formatPath(arg, :unix)
+    arg = File.rubypath(arg)
 	if(!File.file?(arg))
 		arg = File.expand_path(arg)
 		if(!File.file?(arg))
