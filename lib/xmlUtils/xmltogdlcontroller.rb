@@ -36,15 +36,16 @@ class XmlToGdlController
 	if(!destFile.empty?)
 		options[:destfile] = destFile
 	end
-	destDir  = @destPath
+	destDir  = @destPath			# Extract the dir if it is a file path.
 	destDir  = File.dirname(@destPath) unless File.directory?(@destPath)
 	if(destDir.length() < 1)
-		destDir = Dir.getwd()
+		destDir = Dir.getwd()		# Use working dir if nothing there.
 	end
 	options[:destdir] = destDir
 	
 	options[:includes] = @includes
 	
+									# Go to work.
     docBuilder = GdlDocBuilder.new(options)
     docBuilder.createDocument(@srcPath)
     

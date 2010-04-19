@@ -73,23 +73,23 @@ class ContextParser
 #------------------------------------------------------------------------------------------------------------#
 	def parse(fname)
 		puts "Parsing file." unless (!verbose?)
-		ctxListener 				= ContextListener.new(@context)
+		ctxListener 		= ContextListener.new(@context)
 		ctxListener.verbose	= @verbose
-		parser = Parsers::StreamParser.new(File.new(fname), ctxListener)
+		parser 				= Parsers::StreamParser.new(File.new(fname), ctxListener)
 		parser.parse
 
 
 		puts "Parsing guideline." unless (!verbose?)
-		gdlListener 				= GdlListener.new(@context)
+		gdlListener 		= GdlListener.new(@context)		# Gets rule and ruleset names and aliases.
 		gdlListener.verbose	= @verbose
-		parser = Parsers::StreamParser.new(File.new(fname), gdlListener)
+		parser 				= Parsers::StreamParser.new(File.new(fname), gdlListener)
 		parser.parse
 
 
 		puts "Parsing rule XML." unless (!verbose?)
-		ruleListener 					= RuleListener.new(@context)
+		ruleListener 			= RuleListener.new(@context)
 		ruleListener.verbose	= @verbose
-		parser = Parsers::StreamParser.new(File.new(fname), ruleListener)
+		parser 					= Parsers::StreamParser.new(File.new(fname), ruleListener)
 		parser.parse
 	end # parse
 

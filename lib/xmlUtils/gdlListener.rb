@@ -1,7 +1,7 @@
 #
 #	File: gdlListener.rb
 #
-#	This class is used to convert XML to GDL
+#	Adds rule and ruleset names and aliases to a list (figuratively).
 #	
 #
 
