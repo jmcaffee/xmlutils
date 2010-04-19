@@ -44,9 +44,9 @@ class XmlToGdlApp < UserChoices::Command
         
         # Options
         builder.add_choice(:includes, :type=>[:string]) { |command_line|
-            command_line.uses_option("-i", "--includes ARG1[, ARG2, ARG3, ...]",
+            command_line.uses_option("-i", "--includes ARG1[,ARG2,ARG3,ARGn]",
                                     "Include external variable definition files.",
-									"Seperate multiple files with a comma.")
+									"Seperate multiple files with a comma (NO SPACES).")
         }
         
     end # def add_choices
