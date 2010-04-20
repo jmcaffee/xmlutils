@@ -105,6 +105,15 @@ class XmlVisitor
 			when 'YParameter'
 				data = visitYParameter(elem, data)
 
+			when 'Function'
+				data = visitXmlFunction(elem, data)
+
+			when 'Args'
+				data = visitArgs(elem, data)
+
+			when 'Arg'
+				data = visitArg(elem, data)
+
 			else
 				data = visitDefault(elem, data)
 		end	# case
@@ -616,10 +625,67 @@ class XmlVisitor
 
 
 
+#-------------------------------------------------------------------------------------------------------------#
+# visitXmlFunction - Handle default parsing
+#
+# elem	- Element to visit
+#	data	- output object to append GDL text to
+#
+# @returns	GDL output
+#
+#------------------------------------------------------------------------------------------------------------#
+	def visitXmlFunction(elem, data)
+		@@log.debug("XmlVisitor::visitXmlFunction")
+		@@log.debug(elem.inspect)
+		
+		elem.each_element do |child|
+			data = visit(child, data)
+		end
+		
+		return data
+	end	# visitXmlFunction
 
 
+#-------------------------------------------------------------------------------------------------------------#
+# visitArgs - Handle default parsing
+#
+# elem	- Element to visit
+#	data	- output object to append GDL text to
+#
+# @returns	GDL output
+#
+#------------------------------------------------------------------------------------------------------------#
+	def visitArgs(elem, data)
+		@@log.debug("XmlVisitor::visitArgs")
+		@@log.debug(elem.inspect)
+		
+		elem.each_element do |child|
+			data = visit(child, data)
+		end
+		
+		return data
+	end	# visitArgs
 
 
+#-------------------------------------------------------------------------------------------------------------#
+# visitArg - Handle default parsing
+#
+# elem	- Element to visit
+#	data	- output object to append GDL text to
+#
+# @returns	GDL output
+#
+#------------------------------------------------------------------------------------------------------------#
+	def visitArg(elem, data)
+		@@log.debug("XmlVisitor::visitArg")
+		@@log.debug(elem.inspect)
+		
+		elem.each_element do |child|
+			data = visit(child, data)
+		end
+		
+		return data
+	end	# visitArg
 
 
 end	# class XmlVisitor

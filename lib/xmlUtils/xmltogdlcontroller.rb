@@ -74,8 +74,8 @@ class XmlToGdlController
 	if(!File.file?(arg))
 		arg = File.expand_path(arg)
 		if(!File.file?(arg))
-			Log.error "Unable to find include file: #{arg}"
-			puts "Unable to find include file: #{arg}"
+			$LOG.error "Unable to find include file: #{arg}"
+			puts "Missing file: #{arg}"
 			arg = nil
 		end
 	end

@@ -88,6 +88,9 @@ class Listener
 			when 'YParameter'
 				openYParameter(attributes)
 				
+			when 'Function'
+				openXmlFunction(attributes)
+				
 			else
 				openUnknown(tag, attributes)
 		end	# case
@@ -127,6 +130,9 @@ class Listener
 				
 			when 'YParameter'
 				closeYParameter()
+				
+			when 'Function'
+				closeXmlFunction()
 				
 			else
 				closeUnknown(tag)
@@ -398,7 +404,30 @@ class Listener
 #
 #------------------------------------------------------------------------------------------------------------#
 	def closeYParameter()
-	end	# closeUnknown
+	end	# closeYParameter
+
+
+
+
+#-------------------------------------------------------------------------------------------------------------#
+# openXmlFunction - A XmlFunction element has been started
+#
+# attributes	- XmlFunction element attributes
+#
+#------------------------------------------------------------------------------------------------------------#
+	def openXmlFunction(attributes)
+	end	# openXmlFunction
+
+
+
+
+#-------------------------------------------------------------------------------------------------------------#
+# closeXmlFunction - A XmlFunction element has been ended
+#
+#
+#------------------------------------------------------------------------------------------------------------#
+	def closeXmlFunction()
+	end	# closeXmlFunction
 
 
 

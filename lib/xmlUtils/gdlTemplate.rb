@@ -338,7 +338,7 @@ EOF
 				msgTag	= "condition"
 
 			when 'Exceptions'
-				msgType += "exception, "
+				msgType += "exception"
 				isException = true
 
 			when 'Observation'
@@ -351,20 +351,6 @@ EOF
 				msgType += "credit"
 
 		end # case msgObj.type
-		
-																							# Handle exception message exception type
-		if (isException)
-			case msgObj.exceptionType
-				when 'Assets'
-					msgType += " assets"
-					
-				else
-					msgType += " exception"
-				
-			end # case exceptionType
-			
-		end # if isException
-		
 		
 																							
 		if (isCondition)													# Handle condition messages

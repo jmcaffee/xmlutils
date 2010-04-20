@@ -174,6 +174,81 @@ EOF
 
 
 #-------------------------------------------------------------------------------------------------------------#
+# visitXmlFunction - Handle default parsing
+#
+# elem	- Element to visit
+#	data	- output object to append GDL text to
+#
+# @returns	GDL output
+#
+#------------------------------------------------------------------------------------------------------------#
+	def visitXmlFunction(elem, data)
+		@@log.debug("XmlRuleVisitor::visitXmlFunction")
+		@@log.debug(elem.inspect)
+		
+		funcName	= elem.attributes['Name']
+
+		funcArgs = ''
+		elem.each_element do |child|
+			funcArgs = visit(child, funcArgs)
+		end
+		
+		output = "#{funcName}#{funcArgs}"
+		data += output
+		return data
+	end	# visitXmlFunction
+
+
+#-------------------------------------------------------------------------------------------------------------#
+# visitArgs - Handle default parsing
+#
+# elem	- Element to visit
+#	data	- output object to append GDL text to
+#
+# @returns	GDL output
+#
+#------------------------------------------------------------------------------------------------------------#
+	def visitArgs(elem, data)
+		@@log.debug("XmlRuleVisitor::visitArgs")
+		@@log.debug(elem.inspect)
+		
+		argsData = ''
+		elem.each_element do |child|
+			argsData = visit(child, argsData)
+		end
+		
+		output = "( #{argsData} )"
+		data += output
+		return data
+	end	# visitArgs
+
+
+#-------------------------------------------------------------------------------------------------------------#
+# visitArg - Handle default parsing
+#
+# elem	- Element to visit
+#	data	- output object to append GDL text to
+#
+# @returns	GDL output
+#
+#------------------------------------------------------------------------------------------------------------#
+	def visitArg(elem, data)
+		@@log.debug("XmlRuleVisitor::visitArg")
+		@@log.debug(elem.inspect)
+		
+		argData = ''
+			
+		elem.each_element do |child|
+			argData += ", " if(!data.empty?)
+			argData = visit(child, argData)
+		end
+		
+		data += argData
+		return data
+	end	# visitArg
+
+
+#-------------------------------------------------------------------------------------------------------------#
 # visitCompute - Handle default parsing
 #
 # elem	- Element to visit

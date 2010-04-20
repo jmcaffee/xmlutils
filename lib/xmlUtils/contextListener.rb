@@ -278,7 +278,9 @@ class ContextListener < Listener
 		puts "msgDone" if $DEBUG
 
 		if (msg.msg == nil || msg.msg.length < 1)
-			raise "Blank message text. Unable to store message in context."
+			#raise "Blank message text. Unable to store message in context."
+			puts "Blank message text. Unable to store message in context."
+			return
 		end # if msg blank
 		
 		@context.messages[msg.msg] = msg
@@ -394,7 +396,32 @@ class ContextListener < Listener
 #------------------------------------------------------------------------------------------------------------#
 	def closeYParameter()
 		@curParam = ""
-	end	# closeUnknown
+	end	# closeYParameter
+
+
+
+
+#-------------------------------------------------------------------------------------------------------------#
+# openXmlFunction - A XmlFunction element has been started
+#
+# attributes	- XmlFunction element attributes
+#
+#------------------------------------------------------------------------------------------------------------#
+	def openXmlFunction(attributes)
+		@curParam = "Y"
+	end	# openXmlFunction
+
+
+
+
+#-------------------------------------------------------------------------------------------------------------#
+# closeXmlFunction - A XmlFunction element has been ended
+#
+#
+#------------------------------------------------------------------------------------------------------------#
+	def closeXmlFunction()
+		@curParam = ""
+	end	# closeXmlFunction
 
 
 
