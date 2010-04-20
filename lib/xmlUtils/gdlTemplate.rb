@@ -167,8 +167,13 @@ EOF
 #
 #------------------------------------------------------------------------------------------------------------#
 	def dsm(dataType, varName, varAlias)
+    dsn = "decision".ljust(16)
+	dpm = "dpm".ljust(4)
+	dt = dataType.ljust(12)
+    vn = varName.ljust(48)
+	
 		out = <<EOF
-decision		dpm	#{dataType}	#{varName}		"#{varAlias}";
+#{dsn}#{dpm}#{dt}#{vn}"#{varAlias}";
 EOF
 		
 		out																								# Return generated output
@@ -184,8 +189,13 @@ EOF
 #
 #------------------------------------------------------------------------------------------------------------#
 	def dpm(dataType, varName, varAlias)
+    lead = " ".ljust(16)
+	dpm = "dpm".ljust(4)
+	dt = dataType.ljust(12)
+    vn = varName.ljust(48)
+	
 		out = <<EOF
-	dpm	#{dataType}	#{varName}		"#{varAlias}";
+#{lead}#{dpm}#{dt}#{vn}"#{varAlias}";
 EOF
 		
 		out																								# Return generated output
@@ -195,13 +205,14 @@ EOF
 
 
 #-------------------------------------------------------------------------------------------------------------#
-# rule - output collected variables to file
+# rule - output a rule
 #
 # ofile	- output file handle
 #
 #------------------------------------------------------------------------------------------------------------#
 	def rule(rule)
 
+		# Rule output is generated in GdlDoc.visitRule()
 		return rule.src
 		
 	end # def rule
@@ -244,7 +255,7 @@ EOF
  */
 ruleset #{ruleset.name}(#{ruleParams})
 #{rulelist}
-end // ruleset #{ruleset.name}
+end // ruleset #{ruleset.name}(#{ruleParams})
 
 
 

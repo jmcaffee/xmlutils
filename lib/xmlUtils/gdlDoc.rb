@@ -142,11 +142,36 @@ class GdlDoc
 #				end # if dsm
 #			end # dsms.each
 			
+			#@context.ppms.each do |p|
+			#	puts p.inspect
+			#end
+			
+			# @context.ppms consists of an array of [ppm alias, ppm object]s
+			#vars = @context.ppms.sort {|a, b| a[1].name.downcase <=> b[1].name.downcase}
+			
+			prds = @context.ppms.select {|a,b| b.varType == "prd"}
+			prds.sort {|a, b| a[1].name.downcase <=> b[1].name.downcase}
+			
+			apps = @context.ppms.select {|a,b| b.varType == "app"}
+			apps.sort {|a, b| a[1].name.downcase <=> b[1].name.downcase}
+			
+			crds = @context.ppms.select {|a,b| b.varType == "crd"}
+			crds.sort {|a, b| a[1].name.downcase <=> b[1].name.downcase}
 
-			ofile << tpl.sectionComment("PPM Definitions")
-
-			vars = @context.ppms.sort {|a, b| a[1].name.downcase <=> b[1].name.downcase}
-			vars.each do |rPpm|
+			ofile << tpl.sectionComment("PPM Definitions (PRD)")
+			prds.each do |rPpm|
+				ppm = rPpm[1]
+				ofile << tpl.ppm(ppm.dataType, ppm.varType, ppm.name, ppm.alias)
+			end # do
+				
+			ofile << tpl.sectionComment("PPM Definitions (APP)")
+			apps.each do |rPpm|
+				ppm = rPpm[1]
+				ofile << tpl.ppm(ppm.dataType, ppm.varType, ppm.name, ppm.alias)
+			end # do
+				
+			ofile << tpl.sectionComment("PPM Definitions (CRD)")
+			crds.each do |rPpm|
 				ppm = rPpm[1]
 				ofile << tpl.ppm(ppm.dataType, ppm.varType, ppm.name, ppm.alias)
 			end # do

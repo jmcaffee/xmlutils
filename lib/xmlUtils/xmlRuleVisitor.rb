@@ -135,11 +135,9 @@ EOF
 																						# Create rule template
 		output = <<EOF
 #{aliasStmt}
-/* ==========================================================================
- * #{ruleName}
- *
- *
- */
+// ############################################
+// #{ruleName}
+
 rule #{ruleName}()
     if(
         #{ruleCond}
@@ -159,7 +157,7 @@ EOF
 		
 		output += <<EOF
     end
-end	// rule #{ruleName}
+end	// rule
 
 
 
