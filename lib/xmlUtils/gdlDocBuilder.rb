@@ -142,6 +142,8 @@ class GdlDocBuilder
 #
 #------------------------------------------------------------------------------------------------------------#
 	def parseExternalVarDefs(ctx)
+		puts "No external variable definition files provided." if (!ctx.options[:verbose].nil? && ctx.options[:includes].nil?)
+		return if ctx.options[:includes].nil?
 		
 		vp = LineParser.new											# Parse externally defined GDL variable definition files.
 		ctx.options[:includes].each do |inc|

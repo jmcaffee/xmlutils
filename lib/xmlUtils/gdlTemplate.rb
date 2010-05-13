@@ -430,21 +430,23 @@ EOF
 #
 #------------------------------------------------------------------------------------------------------------#
 	def guideline(ctx)
-
 		gdlout 	= ""
 		reflist	= ""
+		return gdlout if( ctx.guideline.nil? )
 		
-		ctx.guideline.items.each do |item|
-			rname = "UNKNOWN"
-			if (item[0] == 'rule')
-				rname = ctx.rules[item[1]].name
-			elsif (item[0] == 'ruleset')
-				rname = ctx.rulesets[item[1]].name
-			end # if item
-			
-			reflist += reference(item[0], rname)
-			
-		end # items.each
+		if( ! ctx.guideline.items.nil? )
+			ctx.guideline.items.each do |item|
+				rname = "UNKNOWN"
+				if (item[0] == 'rule')
+					rname = ctx.rules[item[1]].name
+				elsif (item[0] == 'ruleset')
+					rname = ctx.rulesets[item[1]].name
+				end # if item
+				
+				reflist += reference(item[0], rname)
+				
+			end # items.each
+		end
 
 gdlout = <<EOF
 /* ==========================================================================
