@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#! C:/tools/Ruby/bin/ruby.exe
 ##############################################################################
 # File:: xmltogdl
 # Purpose:: Utility to convert XML guideline files to gdl source
