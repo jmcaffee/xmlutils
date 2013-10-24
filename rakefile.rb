@@ -8,6 +8,7 @@
 ######################################################################################
 
 require 'rubygems'
+require 'rubygems/package_task'
 require 'psych'
 gem 'rdoc', '>= 3.9.4'
 
@@ -41,19 +42,6 @@ PKG_FILES 	= Dir["**/*"].select { |d| d =~ %r{^(README|bin/|data/|ext/|lib/|spec
 	
 
 #############################################################################
-#### Imports
-# Note: Rake loads imports only after the current rakefile has been completely loaded.
-
-# Load local tasks.
-imports = FileList['tasks/**/*.rake']
-imports.each do |imp|
-	puts "Importing local task file: #{imp}" if $verbose
-	import "#{imp}"
-end
-
-
-
-#############################################################################
 #task :init => [BUILDDIR] do
 task :init do
 
@@ -73,7 +61,7 @@ end
 
 
 #############################################################################
-SPEC = Gem::Specification.new do |s|
+spec = Gem::Specification.new do |s|
 	s.platform = Gem::Platform::RUBY
 	s.summary = "XML Utility classes library"
 	s.name = PROJNAME.downcase
@@ -90,4 +78,15 @@ SPEC = Gem::Specification.new do |s|
 XML Utility classes library and XmlToGdl application.
 EOF
 end
+
+
+#############################################################################
+Gem::PackageTask.new(spec) do |pkg|
+  pkg.need_zip = true
+    pkg.need_tar = true
+
+      puts "PKG_VERSION: #{PKG_VERSION}"
+      end
+
+
 
