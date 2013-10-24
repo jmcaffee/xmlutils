@@ -8,36 +8,36 @@
 ######################################################################################
 
 require 'rubygems'
-require 'rake/gempackagetask'
+require 'psych'
+gem 'rdoc', '>= 3.9.4'
 
 require 'rake'
 require 'rake/clean'
-require 'rake/rdoctask'
+require 'rdoc/task'
 require 'ostruct'
 require 'rakeutils'
 
-# Setup common directory structure
 
-
+# Set the project name
 PROJNAME        = "XmlUtils"
 
+# Bring in the library's version constant
 $:.unshift File.expand_path("../lib", __FILE__)
 require "xmlutils/version"
 
 PKG_VERSION	= XmlUtils::VERSION
 PKG_FILES 	= Dir["**/*"].select { |d| d =~ %r{^(README|bin/|data/|ext/|lib/|spec/|test/)} }
 
-# Setup common clean and clobber targets
+# Setup common clean and clobber targets ----------------------------
 
-CLEAN.include("pkg")
-CLOBBER.include("pkg")
 #CLEAN.include("#{BUILDDIR}/**/*.*")
 #CLOBBER.include("#{BUILDDIR}")
 
+# Setup common directory structure ----------------------------------
 
 #directory BUILDDIR
 
-$verbose = true
+#$verbose = true
 	
 
 #############################################################################
@@ -61,28 +61,19 @@ end
 
 
 #############################################################################
-Rake::RDocTask.new do |rdoc|
-    files = ['docs/**/*.rdoc', 'lib/**/*.rb', 'app/**/*.rb']
+RDoc::Task.new(:rdoc) do |rdoc|
+    files = ['README.rdoc', 'docs/**/*.rdoc', 'lib/**/*.rb', 'bin/**/*.rb']
     rdoc.rdoc_files.add( files )
-    rdoc.main = "docs/README.rdoc"           	# Page to start on
+    rdoc.main = "README.rdoc"           	# Page to start on
 	#puts "PWD: #{FileUtils.pwd}"
     rdoc.title = "#{PROJNAME} Documentation"
     rdoc.rdoc_dir = 'doc'                   # rdoc output folder
-    rdoc.options << '--line-numbers' << '--inline-source' << '--all'
+    rdoc.options << '--line-numbers' << '--all'
 end
 
 
 #############################################################################
-task :incVersion do
-    ver = VersionIncrementer.new
-    ver.incBuild( "#{APPNAME}.ver" )
-    ver.writeSetupIni( "setup/VerInfo.ini" )
-    $APPVERSION = ver.version
-end
-
-
-#############################################################################
-spec = Gem::Specification.new do |s|
+SPEC = Gem::Specification.new do |s|
 	s.platform = Gem::Platform::RUBY
 	s.summary = "XML Utility classes library"
 	s.name = PROJNAME.downcase
@@ -96,21 +87,7 @@ spec = Gem::Specification.new do |s|
 	s.email = "gems@ktechdesign.com"
 	s.homepage = "http://gems.ktechdesign.com"
 	s.description = <<EOF
-XML Utility classes library.
+XML Utility classes library and XmlToGdl application.
 EOF
 end
 
-
-#############################################################################
-Rake::GemPackageTask.new(spec) do |pkg|
-	pkg.need_zip = true
-	pkg.need_tar = true
-	
-	puts "PKG_VERSION: #{PKG_VERSION}"
-#=begin		
-	puts "PKG_FILES:"
-	PKG_FILES.each do |f|
-		puts "  #{f}"
-	end
-#=end
-end
