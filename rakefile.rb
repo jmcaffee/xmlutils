@@ -16,7 +16,7 @@ require 'rake'
 require 'rake/clean'
 require 'rdoc/task'
 require 'ostruct'
-require 'rakeutils'
+#require 'rakeutils'
 
 
 # Set the project name
