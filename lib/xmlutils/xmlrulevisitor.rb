@@ -8,8 +8,8 @@
 require 'rexml/document'
 require 'rexml/streamlistener'
 require 'logger'
-require 'xmlUtils/xmlVisitor'
-require 'xmlUtils/gdlTemplate'
+require 'xmlutils/xmlvisitor'
+require 'xmlutils/gdltemplate'
 
 #################################################
 #

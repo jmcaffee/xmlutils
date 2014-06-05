@@ -7,7 +7,7 @@
 
 require 'rexml/document'
 require 'rexml/streamlistener'
-require 'xmlUtils/xmlRuleVisitor'
+require 'xmlutils/xmlrulevisitor'
 
 include REXML
 
