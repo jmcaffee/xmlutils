@@ -6,9 +6,9 @@
 #
 
 require 'rexml/streamlistener'
-require 'xmlUtils/gdlContext'
-require 'xmlUtils/gdlContextObjs'
-require 'xmlUtils/listener'
+require 'xmlutils/gdlcontext'
+require 'xmlutils/gdlcontextobjs'
+require 'xmlutils/listener'
 
 include REXML
 

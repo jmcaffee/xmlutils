@@ -5,8 +5,8 @@
 #	
 #
 
-require 'xmlUtils/gdlContext'
-require 'xmlUtils/gdlContextObjs'
+require 'xmlutils/gdlcontext'
+require 'xmlutils/gdlcontextobjs'
 
 
 #################################################

@@ -1,5 +1,5 @@
 #
-# File: gdlContext.rb
+# File: gdlcontext.rb
 #
 # This is a guideline context object
 #

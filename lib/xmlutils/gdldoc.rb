@@ -5,8 +5,8 @@
 #	
 #
 
-require 'xmlUtils/gdlContextObjs'
-require 'xmlUtils/gdlTemplate'
+require 'xmlutils/gdlcontextobjs'
+require 'xmlutils/gdltemplate'
 require 'date'
 
 
