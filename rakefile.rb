@@ -7,86 +7,28 @@
 # Website::   http://ktechsystems.com
 ######################################################################################
 
-require 'rubygems'
-require 'rubygems/package_task'
-require 'psych'
-gem 'rdoc', '>= 3.9.4'
+require 'bundler/gem_tasks'
 
 require 'rake'
 require 'rake/clean'
-require 'rdoc/task'
-require 'ostruct'
-#require 'rakeutils'
+require 'rspec/core/rake_task'
 
 
 # Set the project name
 PROJNAME        = "XmlUtils"
 
-# Bring in the library's version constant
-$:.unshift File.expand_path("../lib", __FILE__)
-require "xmlutils/version"
-
-PKG_VERSION	= XmlUtils::VERSION
-PKG_FILES 	= Dir["**/*"].select { |d| d =~ %r{^(README|bin/|data/|ext/|lib/|spec/|test/)} }
-
 # Setup common clean and clobber targets ----------------------------
 
-#CLEAN.include("#{BUILDDIR}/**/*.*")
-#CLOBBER.include("#{BUILDDIR}")
+CLEAN.include("pkg/**/*.*")
+CLEAN.include("tmp/**/*.*")
 
-# Setup common directory structure ----------------------------------
+CLOBBER.include("pkg")
+CLOBBER.include("tmp")
 
-#directory BUILDDIR
-
-#$verbose = true
-	
 
 #############################################################################
-#task :init => [BUILDDIR] do
-task :init do
-
+desc "run all specs"
+RSpec::Core::RakeTask.new do |t|
+  #t.rcov = true
 end
-
-
-#############################################################################
-RDoc::Task.new(:rdoc) do |rdoc|
-    files = ['README.rdoc', 'docs/**/*.rdoc', 'lib/**/*.rb', 'bin/**/*.rb']
-    rdoc.rdoc_files.add( files )
-    rdoc.main = "README.rdoc"           	# Page to start on
-	#puts "PWD: #{FileUtils.pwd}"
-    rdoc.title = "#{PROJNAME} Documentation"
-    rdoc.rdoc_dir = 'doc'                   # rdoc output folder
-    rdoc.options << '--line-numbers' << '--all'
-end
-
-
-#############################################################################
-spec = Gem::Specification.new do |s|
-	s.platform = Gem::Platform::RUBY
-	s.summary = "XML Utility classes library"
-	s.name = PROJNAME.downcase
-	s.version = PKG_VERSION
-	s.requirements << 'none'
-	s.require_path = 'lib'
-	#s.autorequire = 'rake'
-	s.files = PKG_FILES
-	s.executables = "xmltogdl"
-	s.author = "Jeff McAffee"
-	s.email = "gems@ktechdesign.com"
-	s.homepage = "http://gems.ktechdesign.com"
-	s.description = <<EOF
-XML Utility classes library and XmlToGdl application.
-EOF
-end
-
-
-#############################################################################
-Gem::PackageTask.new(spec) do |pkg|
-  pkg.need_zip = true
-    pkg.need_tar = true
-
-      puts "PKG_VERSION: #{PKG_VERSION}"
-      end
-
-
 
