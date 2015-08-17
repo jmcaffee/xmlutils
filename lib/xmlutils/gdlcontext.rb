@@ -303,6 +303,3 @@ class GdlContext
   end # dumpLookups
 end # class GdlContext
 
-
-
-

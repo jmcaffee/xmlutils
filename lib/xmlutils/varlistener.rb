@@ -1,8 +1,8 @@
 #
-#	File: varListener.rb
+# File: varListener.rb
 #
-#	This class is used to collect XML variables 
-#	
+# This class is used to collect XML variables
+#
 #
 
 require 'rexml/streamlistener'
@@ -21,7 +21,7 @@ include REXML
 #
 #################################################
 class VarListener < Listener
-	
+
   attr_reader :context
 
 
@@ -30,63 +30,57 @@ class VarListener < Listener
 #-------------------------------------------------------------------------------------------------------------#
 # initialize - Ctor
 #
-# ctx	- Context object to store variables in
+# ctx - Context object to store variables in
 #
 #------------------------------------------------------------------------------------------------------------#
-	def initialize(ctx)
-		@verbose 		= false
-		@context 		= ctx
-	end
-	
+  def initialize(ctx)
+    @verbose    = false
+    @context    = ctx
+  end
+
 
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # openDPM - Add a DPM variable to the context object
 #
-# attributes	- DPM element attributes
+# attributes  - DPM element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openDPM(attributes)
-		dpmAlias 	= attributes["Name"]
-		confName 	= @context.createValidName(dpmAlias)
-		varType  	= attributes["Type"]
-		dataType	= attributes["DataType"] if attributes.has_key?("DataType")
-		prodType	= attributes["ProductType"]
+  def openDPM(attributes)
+    dpmAlias  = attributes["Name"]
+    confName  = @context.createValidName(dpmAlias)
+    varType   = attributes["Type"]
+    dataType  = attributes["DataType"] if attributes.has_key?("DataType")
+    prodType  = attributes["ProductType"]
 
-		dataType = prodType if nil == dataType
-		
-		dpm = Dpm.new(confName, dpmAlias, varType, dataType, prodType)
-		
-		@context.dpms[dpmAlias] = dpm
-	end	# openDPM
-	
+    dataType = prodType if nil == dataType
+
+    dpm = Dpm.new(confName, dpmAlias, varType, dataType, prodType)
+
+    @context.dpms[dpmAlias] = dpm
+  end # openDPM
+
 
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # openPPM - Add a PPM variable to the context object
 #
-# attributes	- PPM element attributes
+# attributes  - PPM element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openPPM(attributes)
-		ppmAlias 	= attributes["Name"]
-		confName 	= @context.createValidName(ppmAlias)
-		varType  	= attributes["Type"]
-		dataType	= attributes["DataType"] if attributes.has_key?("DataType")
+  def openPPM(attributes)
+    ppmAlias  = attributes["Name"]
+    confName  = @context.createValidName(ppmAlias)
+    varType   = attributes["Type"]
+    dataType  = attributes["DataType"] if attributes.has_key?("DataType")
 
-		dataType = "Text" if nil == dataType
-		
-		ppm = Ppm.new(confName, ppmAlias, varType, dataType)
-		
-		@context.ppms[ppmAlias] = ppm
-	end	# openPPM
+    dataType = "Text" if nil == dataType
 
+    ppm = Ppm.new(confName, ppmAlias, varType, dataType)
 
-
-
-end	# class VarListener
-
-
+    @context.ppms[ppmAlias] = ppm
+  end # openPPM
+end # class VarListener
 

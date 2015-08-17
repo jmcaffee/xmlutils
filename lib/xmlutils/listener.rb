@@ -1,8 +1,8 @@
 #
-#	File: listener.rb
+# File: listener.rb
 #
-#	This class is an abstract listener base class
-#	
+# This class is an abstract listener base class
+#
 #
 
 require 'rexml/streamlistener'
@@ -17,15 +17,15 @@ include REXML
 # class Listener
 #
 #################################################
-class Listener 
-	include StreamListener
-	
+class Listener
+  include StreamListener
+
   attr_writer :verbose
 
   def verbose?
     @verbose
   end
-	
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
@@ -33,71 +33,71 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def initialize()
-		@verbose 		= false
-	end
-	
+  def initialize()
+    @verbose    = false
+  end
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # tag_start - A start tag has been parsed
 #
-#	tag				- name of tag (element name)
-# attributes	- element tag attributes
+# tag       - name of tag (element name)
+# attributes  - element tag attributes
 #------------------------------------------------------------------------------------------------------------#
-	def tag_start(tag, attributes)
-		if ($DEBUG)
-			puts "tag_start: #{tag}"
+  def tag_start(tag, attributes)
+    if ($DEBUG)
+      puts "tag_start: #{tag}"
 
-			if(!attributes.empty?)
-				puts "      Attr:"
-				attributes.each do |attr|
-					puts "            #{attr[0]}: #{attr[1]}"
-				end
-			end
-		end # if $DEBUG
-		
-		case tag
-			when 'DPM'
-				openDPM(attributes)
-				
-			when 'PPM'
-				openPPM(attributes)
-				
-			when 'Rule'
-				openRule(attributes)
-				
-			when 'Ruleset'
-				openRuleset(attributes)
-				
-			when 'Lookup'
-				openLookup(attributes)
-				
-			when 'LOOKUPS'
-				openLOOKUPS(attributes)
-				
-			when 'LOOKUP'
-				openLOOKUP(attributes)
-				
-			when 'Message'
-				openMessage(attributes)
-				
-			when 'XParameter'
-				openXParameter(attributes)
-				
-			when 'YParameter'
-				openYParameter(attributes)
-				
-			when 'Function'
-				openXmlFunction(attributes)
-				
-			else
-				openUnknown(tag, attributes)
-		end	# case
-		
-	end
-	
-	
+      if(!attributes.empty?)
+        puts "      Attr:"
+        attributes.each do |attr|
+          puts "            #{attr[0]}: #{attr[1]}"
+        end
+      end
+    end # if $DEBUG
+
+    case tag
+      when 'DPM'
+        openDPM(attributes)
+
+      when 'PPM'
+        openPPM(attributes)
+
+      when 'Rule'
+        openRule(attributes)
+
+      when 'Ruleset'
+        openRuleset(attributes)
+
+      when 'Lookup'
+        openLookup(attributes)
+
+      when 'LOOKUPS'
+        openLOOKUPS(attributes)
+
+      when 'LOOKUP'
+        openLOOKUP(attributes)
+
+      when 'Message'
+        openMessage(attributes)
+
+      when 'XParameter'
+        openXParameter(attributes)
+
+      when 'YParameter'
+        openYParameter(attributes)
+
+      when 'Function'
+        openXmlFunction(attributes)
+
+      else
+        openUnknown(tag, attributes)
+    end # case
+
+  end
+
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
@@ -105,64 +105,64 @@ class Listener
 #
 # tag - name of tag (element name)
 #------------------------------------------------------------------------------------------------------------#
-	def tag_end(tag)
-		puts "tag_end: #{tag}" unless !$DEBUG
-		puts "" if $DEBUG
+  def tag_end(tag)
+    puts "tag_end: #{tag}" unless !$DEBUG
+    puts "" if $DEBUG
 
-		case tag
-			when 'Ruleset'
-				closeRuleset()
+    case tag
+      when 'Ruleset'
+        closeRuleset()
 
-			when 'Lookup'
-				closeLookup()
-				
-			when 'LOOKUPS'
-				closeLOOKUPS()
-				
-			when 'LOOKUP'
-				closeLOOKUP()
-				
-			when 'Message'
-				closeMessage()
-				
-			when 'XParameter'
-				closeXParameter()
-				
-			when 'YParameter'
-				closeYParameter()
-				
-			when 'Function'
-				closeXmlFunction()
-				
-			else
-				closeUnknown(tag)
-		end # case
-		
-	end
-	
-	
+      when 'Lookup'
+        closeLookup()
+
+      when 'LOOKUPS'
+        closeLOOKUPS()
+
+      when 'LOOKUP'
+        closeLOOKUP()
+
+      when 'Message'
+        closeMessage()
+
+      when 'XParameter'
+        closeXParameter()
+
+      when 'YParameter'
+        closeYParameter()
+
+      when 'Function'
+        closeXmlFunction()
+
+      else
+        closeUnknown(tag)
+    end # case
+
+  end
+
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # entity - An entity has been parsed
 #
-# content	- entity content
+# content - entity content
 #------------------------------------------------------------------------------------------------------------#
-	def entity(content)
-		puts "entity: #{content}" unless !$DEBUG
-	end
-	
-	
+  def entity(content)
+    puts "entity: #{content}" unless !$DEBUG
+  end
+
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # text - A text node has been parsed
 #
-# txt	- node text
+# txt - node text
 #------------------------------------------------------------------------------------------------------------#
-	def text(txt)
-		puts "text: #{txt}" unless !$DEBUG
-	end
+  def text(txt)
+    puts "text: #{txt}" unless !$DEBUG
+  end
 
 
 
@@ -170,11 +170,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # cdata - A cdata node has been parsed
 #  Called when <![CDATA[ … ]]> is encountered in a document. @p content "…"
-# txt	- node text
+# txt - node text
 #------------------------------------------------------------------------------------------------------------#
-	def cdata(txt)
-		puts "cdata: #{txt}" unless !$DEBUG
-	end
+  def cdata(txt)
+    puts "cdata: #{txt}" unless !$DEBUG
+  end
 
 
 
@@ -182,11 +182,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openMessage - A Message element has been started
 #
-# attributes	- Message element attributes
+# attributes  - Message element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openMessage(attributes)
-	end	# openMessage
+  def openMessage(attributes)
+  end # openMessage
 
 
 
@@ -196,8 +196,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeMessage()
-	end	# closeMessage
+  def closeMessage()
+  end # closeMessage
 
 
 
@@ -205,11 +205,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openDPM - A DPM element has been started
 #
-# attributes	- DPM element attributes
+# attributes  - DPM element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openDPM(attributes)
-	end	# openDpm
+  def openDPM(attributes)
+  end # openDpm
 
 
 
@@ -219,8 +219,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeDPM()
-	end	# closeDPM
+  def closeDPM()
+  end # closeDPM
 
 
 
@@ -228,11 +228,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openPPM - A PPM element has been started
 #
-# attributes	- PPM element attributes
+# attributes  - PPM element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openPPM(attributes)
-	end	# openPPM
+  def openPPM(attributes)
+  end # openPPM
 
 
 
@@ -242,8 +242,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closePPM()
-	end	# closePPM
+  def closePPM()
+  end # closePPM
 
 
 
@@ -251,11 +251,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openRule - A Rule element has been started
 #
-# attributes	- rule element attributes
+# attributes  - rule element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openRule(attributes)
-	end	# openRule
+  def openRule(attributes)
+  end # openRule
 
 
 
@@ -265,8 +265,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeRule()
-	end	# closeRule
+  def closeRule()
+  end # closeRule
 
 
 
@@ -274,11 +274,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openRuleset - A Ruleset element has been started
 #
-# attributes	- ruleset element attributes
+# attributes  - ruleset element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openRuleset(attributes)
-	end	# openRuleset
+  def openRuleset(attributes)
+  end # openRuleset
 
 
 
@@ -288,8 +288,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeRuleset()
-	end	# closeRuleset
+  def closeRuleset()
+  end # closeRuleset
 
 
 
@@ -297,11 +297,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openLookup - A Lookup element has been started
 #
-# attributes	- Lookup element attributes
+# attributes  - Lookup element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openLookup(attributes)
-	end	# openLookup
+  def openLookup(attributes)
+  end # openLookup
 
 
 
@@ -311,8 +311,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeLookup()
-	end	# closeLookup
+  def closeLookup()
+  end # closeLookup
 
 
 
@@ -320,11 +320,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openLOOKUPS - A LOOKUPS element has been started
 #
-# attributes	- LOOKUPS element attributes
+# attributes  - LOOKUPS element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openLOOKUPS(attributes)
-	end	# openLOOKUPS
+  def openLOOKUPS(attributes)
+  end # openLOOKUPS
 
 
 
@@ -334,8 +334,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeLOOKUPS()
-	end	# closeUnknown
+  def closeLOOKUPS()
+  end # closeUnknown
 
 
 
@@ -343,11 +343,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openLOOKUP - A LOOKUP element has been started
 #
-# attributes	- LOOKUP element attributes
+# attributes  - LOOKUP element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openLOOKUP(attributes)
-	end	# openLOOKUP
+  def openLOOKUP(attributes)
+  end # openLOOKUP
 
 
 
@@ -357,8 +357,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeLOOKUP()
-	end	# closeUnknown
+  def closeLOOKUP()
+  end # closeUnknown
 
 
 
@@ -366,11 +366,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openXParameter - A XParameter element has been started
 #
-# attributes	- XParameter element attributes
+# attributes  - XParameter element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openXParameter(attributes)
-	end	# openXParameter
+  def openXParameter(attributes)
+  end # openXParameter
 
 
 
@@ -380,8 +380,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeXParameter()
-	end	# closeUnknown
+  def closeXParameter()
+  end # closeUnknown
 
 
 
@@ -389,11 +389,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openYParameter - A YParameter element has been started
 #
-# attributes	- YParameter element attributes
+# attributes  - YParameter element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openYParameter(attributes)
-	end	# openYParameter
+  def openYParameter(attributes)
+  end # openYParameter
 
 
 
@@ -403,8 +403,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeYParameter()
-	end	# closeYParameter
+  def closeYParameter()
+  end # closeYParameter
 
 
 
@@ -412,11 +412,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openXmlFunction - A XmlFunction element has been started
 #
-# attributes	- XmlFunction element attributes
+# attributes  - XmlFunction element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openXmlFunction(attributes)
-	end	# openXmlFunction
+  def openXmlFunction(attributes)
+  end # openXmlFunction
 
 
 
@@ -426,8 +426,8 @@ class Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeXmlFunction()
-	end	# closeXmlFunction
+  def closeXmlFunction()
+  end # closeXmlFunction
 
 
 
@@ -435,13 +435,13 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # openUnknown - A Unknown element has been started
 #
-# tag				- Tag name of unknown element
-# attributes	- Unknown element attributes
+# tag       - Tag name of unknown element
+# attributes  - Unknown element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openUnknown(tag, attributes)
-		puts "opening unknown tag: #{tag}" unless !$DEBUG
-	end	# openUnknown
+  def openUnknown(tag, attributes)
+    puts "opening unknown tag: #{tag}" unless !$DEBUG
+  end # openUnknown
 
 
 
@@ -449,17 +449,11 @@ class Listener
 #-------------------------------------------------------------------------------------------------------------#
 # closeUnknown - A Unknown element has been ended
 #
-# tag				- Tag name of unknown element
+# tag       - Tag name of unknown element
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeUnknown(tag)
-		puts "closing unknown tag: #{tag}" unless !$DEBUG
-	end	# closeUnknown
-
-
-
-
-end	# class Listener
-
-
+  def closeUnknown(tag)
+    puts "closing unknown tag: #{tag}" unless !$DEBUG
+  end # closeUnknown
+end # class Listener
 

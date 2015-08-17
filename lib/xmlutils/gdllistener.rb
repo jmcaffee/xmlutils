@@ -1,8 +1,8 @@
 #
-#	File: gdlListener.rb
+# File: gdlListener.rb
 #
-#	Adds rule and ruleset names and aliases to a list (figuratively).
-#	
+# Adds rule and ruleset names and aliases to a list (figuratively).
+#
 #
 
 require 'rexml/streamlistener'
@@ -21,77 +21,77 @@ include REXML
 #
 #################################################
 class GdlListener < Listener
-	
+
   attr_reader :context
   attr_writer :gdl
-  
+
   attr_writer :inGuideline
   attr_writer :inRule
   attr_writer :inRuleset
-  
 
 
 
 
 
-	def initialize(ctx)
-		super()
-		@context 			= ctx
-		@gdl					= nil
-		@inGuideline	= false
-		@inRule 			= false
-		@inRuleset 		= false
-	end
-	
+
+  def initialize(ctx)
+    super()
+    @context      = ctx
+    @gdl          = nil
+    @inGuideline  = false
+    @inRule       = false
+    @inRuleset    = false
+  end
+
 
 
 
   def inGuideline?
     return @inGuideline
   end
-	
+
 
 
 
   def inRule?
     return @inRule
   end
-	
+
 
 
 
   def inRuleset?
     return @inRuleset
   end
-	
+
 
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # tag_start - A start tag has been parsed
 #
-#	tag				- name of tag (element name)
-# attributes	- element tag attributes
+# tag       - name of tag (element name)
+# attributes  - element tag attributes
 #------------------------------------------------------------------------------------------------------------#
-	def tag_start(tag, attributes)
+  def tag_start(tag, attributes)
 
-		case tag
-			when 'Guideline'
-				openGuideline(attributes)
-				
-			when 'Rule'
-				openRule(attributes)
-				
-			when 'Ruleset'
-				openRuleset(attributes)
-				
-			else
-				openUnknown(tag, attributes)				# Don't care
-		end	# case
-		
-	end
-	
-	
+    case tag
+      when 'Guideline'
+        openGuideline(attributes)
+
+      when 'Rule'
+        openRule(attributes)
+
+      when 'Ruleset'
+        openRuleset(attributes)
+
+      else
+        openUnknown(tag, attributes)        # Don't care
+    end # case
+
+  end
+
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
@@ -99,53 +99,53 @@ class GdlListener < Listener
 #
 # tag - name of tag (element name)
 #------------------------------------------------------------------------------------------------------------#
-	def tag_end(tag)
+  def tag_end(tag)
 
-		case tag
-			when 'Guideline'
-				closeGuideline()
-				
-			when 'Rule'
-				closeRule()
-				
-			when 'Ruleset'
-				closeRuleset()
+    case tag
+      when 'Guideline'
+        closeGuideline()
 
-			else
-				closeUnknown(tag)									# Don't care
-		end # case
-		
-	end
-	
-	
+      when 'Rule'
+        closeRule()
+
+      when 'Ruleset'
+        closeRuleset()
+
+      else
+        closeUnknown(tag)                 # Don't care
+    end # case
+
+  end
+
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # openGuideline - Add a Guideline to the context object
 #
-# attributes	- Guideline element attributes
+# attributes  - Guideline element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openGuideline(attributes)
-		return unless (!inGuideline?)
-		
-		if ($DEBUG)
-			puts "openGuideline:"
+  def openGuideline(attributes)
+    return unless (!inGuideline?)
 
-			if(!attributes.empty?)
-				puts "      Attr:"
-				attributes.each do |attr|
-					puts "            #{attr[0]}: #{attr[1]}"
-				end
-			end
-		end # if $DEBUG
-		
-		@gdl = Guideline.new(attributes)
-		
-		@inGuideline = true
-		
-	end	# openGuideline
-	
+    if ($DEBUG)
+      puts "openGuideline:"
+
+      if(!attributes.empty?)
+        puts "      Attr:"
+        attributes.each do |attr|
+          puts "            #{attr[0]}: #{attr[1]}"
+        end
+      end
+    end # if $DEBUG
+
+    @gdl = Guideline.new(attributes)
+
+    @inGuideline = true
+
+  end # openGuideline
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
@@ -153,49 +153,49 @@ class GdlListener < Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeGuideline()
-		if (inGuideline?)
-			@GuidelineOpen = false
-			@context.guideline = @gdl
+  def closeGuideline()
+    if (inGuideline?)
+      @GuidelineOpen = false
+      @context.guideline = @gdl
 
-			puts "closeGuideline" unless (!$DEBUG)
-			puts "" unless (!$DEBUG)
-		end	# if
+      puts "closeGuideline" unless (!$DEBUG)
+      puts "" unless (!$DEBUG)
+    end # if
 
-	end	# closeGuideline
-	
+  end # closeGuideline
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # openRule - Add a rule to the context object
 #
-# attributes	- rule element attributes
+# attributes  - rule element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openRule(attributes)
-		return unless (inGuideline? && (!inRuleset?))
-		
-		if ($DEBUG)
-			puts "openRule:"
+  def openRule(attributes)
+    return unless (inGuideline? && (!inRuleset?))
 
-			if(!attributes.empty?)
-				puts "      Attr:"
-				attributes.each do |attr|
-					puts "            #{attr[0]}: #{attr[1]}"
-				end
-			end
-		end # if $DEBUG
-		
-		ruleAlias = attributes["Name"]
-		item 			= ["rule", "#{ruleAlias}"]
-		
-		@gdl.addItem(item)
-		@inRule = true
-		
-		puts "Guideline item: [#{item[0]}] #{item[1]}" if verbose?
+    if ($DEBUG)
+      puts "openRule:"
 
-	end	# openRule
-	
+      if(!attributes.empty?)
+        puts "      Attr:"
+        attributes.each do |attr|
+          puts "            #{attr[0]}: #{attr[1]}"
+        end
+      end
+    end # if $DEBUG
+
+    ruleAlias = attributes["Name"]
+    item      = ["rule", "#{ruleAlias}"]
+
+    @gdl.addItem(item)
+    @inRule = true
+
+    puts "Guideline item: [#{item[0]}] #{item[1]}" if verbose?
+
+  end # openRule
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
@@ -203,48 +203,48 @@ class GdlListener < Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeRule()
-		if (inRule?)
-			@inRule = false
+  def closeRule()
+    if (inRule?)
+      @inRule = false
 
-			puts "closeRule" unless (!$DEBUG)
-			puts "" unless (!$DEBUG)
-		end	# if
+      puts "closeRule" unless (!$DEBUG)
+      puts "" unless (!$DEBUG)
+    end # if
 
-	end	# closeRule
-	
+  end # closeRule
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
 # openRuleset - Open a ruleset object
 #
-# attributes	- ruleset element attributes
+# attributes  - ruleset element attributes
 #
 #------------------------------------------------------------------------------------------------------------#
-	def openRuleset(attributes)
-		return unless (inGuideline? && (!inRuleset?))
-				
-		if ($DEBUG)
-			puts "openRuleset:"
+  def openRuleset(attributes)
+    return unless (inGuideline? && (!inRuleset?))
 
-			if(!attributes.empty?)
-				puts "      Attr:"
-				attributes.each do |attr|
-					puts "            #{attr[0]}: #{attr[1]}"
-				end
-			end
-		end # if $DEBUG
-		
-		rsAlias 	= attributes["Name"]
-		item 			= ["ruleset", "#{rsAlias}"]
-		
-		@gdl.addItem(item)
-		@inRuleset	= true
-		
-		puts "Guideline item: [#{item[0]}] #{item[1]}" if verbose?
+    if ($DEBUG)
+      puts "openRuleset:"
 
-	end	# openRuleset
-	
+      if(!attributes.empty?)
+        puts "      Attr:"
+        attributes.each do |attr|
+          puts "            #{attr[0]}: #{attr[1]}"
+        end
+      end
+    end # if $DEBUG
+
+    rsAlias   = attributes["Name"]
+    item      = ["ruleset", "#{rsAlias}"]
+
+    @gdl.addItem(item)
+    @inRuleset  = true
+
+    puts "Guideline item: [#{item[0]}] #{item[1]}" if verbose?
+
+  end # openRuleset
+
 
 
 #-------------------------------------------------------------------------------------------------------------#
@@ -252,20 +252,14 @@ class GdlListener < Listener
 #
 #
 #------------------------------------------------------------------------------------------------------------#
-	def closeRuleset()
-		if (inRuleset?)
-			@inRuleset = false
+  def closeRuleset()
+    if (inRuleset?)
+      @inRuleset = false
 
-			puts "closeRuleset" unless (!$DEBUG)
-			puts "" unless (!$DEBUG)
-		end	# if
+      puts "closeRuleset" unless (!$DEBUG)
+      puts "" unless (!$DEBUG)
+    end # if
 
-	end	# closeRuleset
-	
-
-
-
-end	# class GdlListener
-
-
+  end # closeRuleset
+end # class GdlListener
 
