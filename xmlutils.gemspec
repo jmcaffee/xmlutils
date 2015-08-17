@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["jeff@ktechsystems.com"]
   spec.description   = %q{XML Utility classes library and XmlToGdl application.}
   spec.summary       = %q{XML Utility classes library}
-  spec.homepage      = ""
-  spec.license       = "Mine"
+  spec.homepage      = "https://github.com/jmcaffee/xmlutils"
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
